@@ -1,7 +1,5 @@
-import Comportements.ComportementAPiedAvecHache;
 import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
-import Comportements.ComportementParlerCommeUnePrincesse;
 import Person.Chevalier;
 import Person.Fantasssin;
 import Person.Personnage;
@@ -59,18 +57,5 @@ public class SimulationJeu {
             result.append(System.getProperty("line.separator"));
         }
         return result.toString();
-    }
-
-
-    public static void main(String[] args){
-        SimulationJeu s = new SimulationJeu();
-        s.creationPersonnages();
-        System.out.println(s.afficheTous());
-        System.out.println(s.emmetreUnSonTous());
-        System.out.println(s.lancerCombar());
-        s.changerComportementCombat(s.liste.get(0), new ComportementAPiedAvecHache());
-        s.changerComportementEmmetreSon(s.liste.get(0), new ComportementParlerCommeUnePrincesse());
-        System.out.println(s.emmetreUnSonTous());
-        System.out.println(s.lancerCombar());
     }
 }

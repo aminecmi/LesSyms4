@@ -23,11 +23,6 @@ public abstract class Personnage {
     public void setComportementEmmetreSon(ComportementEmmetreSon comportementEmmetreSon) {
         this.comportementEmmetreSon = comportementEmmetreSon;
     }
-
-    public ComportementEmmetreSon getComportementEmmetreSon() {
-        return comportementEmmetreSon;
-    }
-
     public String EmmetreSon() {
         return this.comportementEmmetreSon.emmetreSon();
     }
