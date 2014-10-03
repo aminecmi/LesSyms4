@@ -1,5 +1,4 @@
-import Comportements.ComportementAPiedAvecHache;
-import Comportements.ComportementParlerCommeUnePrincesse;
+import Person.eMode;
 
 public class Main {
     public static void main(String[] args){
@@ -8,9 +7,7 @@ public class Main {
         System.out.println(s.afficheTous());
         System.out.println(s.emmetreUnSonTous());
         System.out.println(s.lancerCombar());
-        s.changerComportementCombat(s.liste.get(0), new ComportementAPiedAvecHache());
-        s.changerComportementEmmetreSon(s.liste.get(0), new ComportementParlerCommeUnePrincesse());
-        System.out.println(s.emmetreUnSonTous());
+        s.changerEtat(eMode.GUERRE);
         System.out.println(s.lancerCombar());
     }
 }

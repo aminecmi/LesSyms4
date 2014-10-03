@@ -5,7 +5,7 @@ import Comportements.ComportementParlerCommeUnePrincesse;
 public class Princesse extends Personnage {
 
     public Princesse(String nom) {
-        super(nom);
+        super(null, nom);
         this.comportementEmmetreSon = new ComportementParlerCommeUnePrincesse();
     }
 
@@ -13,5 +13,4 @@ public class Princesse extends Personnage {
     public String getNom() {
         return "Je suis " + this.nom + " princesse des princesses";
     }
-
 }

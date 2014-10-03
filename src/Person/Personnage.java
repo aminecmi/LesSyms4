@@ -3,18 +3,24 @@ package Person;
 import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
 
-public abstract class Personnage {
+public class Personnage implements ObservateurAbstrait {
     protected String nom;
     protected ComportementCombat comportementCombat;
     protected ComportementEmmetreSon comportementEmmetreSon;
+    protected eMode etatFonctionnement = eMode.ND;
 
-    protected Personnage(String nom) {
+    protected Personnage(Organisation etatMajor, String nom) {
         this.nom = nom;
         this.comportementCombat = null;
         this.comportementEmmetreSon = null;
+
+        if (etatMajor != null)
+            etatMajor.attach(this);
     }
 
-    public abstract String getNom();
+    public String getNom() {
+        return nom;
+    }
 
     public void setComportementCombat(ComportementCombat comportementCombat) {
         this.comportementCombat = comportementCombat;
@@ -29,9 +35,30 @@ public abstract class Personnage {
 
     public String Combattre() {
         if (this.comportementCombat != null)
-            return this.comportementCombat.combattre();
+            return this.comportementCombat.combattre() + " \n" + this.getEtat();
         else {
             return "Ohhh, je suis trop faible pour combattre !";
         }
+    }
+
+
+    public void update(eMode comportement) {
+        this.etatFonctionnement = comportement;
+    }
+
+    public String getEtat() {
+        String etat;
+        switch (etatFonctionnement) {
+            case GUERRE:
+                etat = "En Guerre !";
+                break;
+            case PAIX:
+                etat = "En paix !";
+                break;
+            default:
+                etat = "De quoi ?";
+                break;
+        }
+        return etat;
     }
 }

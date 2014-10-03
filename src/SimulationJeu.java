@@ -1,14 +1,12 @@
 import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
-import Person.Chevalier;
-import Person.Fantasssin;
-import Person.Personnage;
-import Person.Princesse;
+import Person.*;
 
 import java.util.ArrayList;
 
 public class SimulationJeu {
     ArrayList<Personnage> liste;
+    Organisation o;
 
     public SimulationJeu() {
         liste = new ArrayList<Personnage>();
@@ -32,9 +30,10 @@ public class SimulationJeu {
     }
 
     public void creationPersonnages() {
+        this.o = new Organisation();
         Princesse p = new Princesse("Fiona");
-        Chevalier z = new Chevalier("Zodiac");
-        Fantasssin f = new Fantasssin("Fantastic");
+        Chevalier z = new Chevalier(o, "Zodiac");
+        Fantasssin f = new Fantasssin(o, "Fantastic");
 
         liste.add(p);
         liste.add(z);
@@ -57,5 +56,9 @@ public class SimulationJeu {
             result.append(System.getProperty("line.separator"));
         }
         return result.toString();
+    }
+
+    public void changerEtat(eMode etat) {
+        this.o.setModeFonctionnement(etat);
     }
 }
