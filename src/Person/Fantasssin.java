@@ -2,6 +2,7 @@ package Person;
 
 import Comportements.ComportementAPiedAvecHache;
 import Comportements.ComportementCrier;
+import Observateur.Organisation;
 
 public class Fantasssin extends Personnage {
     public Fantasssin(Organisation etatMajor, String nom) {

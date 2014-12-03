@@ -2,6 +2,8 @@ package Person;
 
 import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
+import Observateur.ObservateurAbstrait;
+import Observateur.Organisation;
 
 public class Personnage implements ObservateurAbstrait {
     protected String nom;

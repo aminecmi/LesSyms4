@@ -1,5 +1,7 @@
-package Person;
+package Observateur;
 
+
+import Person.eMode;
 
 public class Organisation extends SujetObserveAbstrait {
     protected eMode modeFonctionnement;

@@ -1,4 +1,4 @@
-package Person;
+package Observateur;
 
 import java.util.ArrayList;
 

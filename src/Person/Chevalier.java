@@ -2,6 +2,7 @@ package Person;
 
 import Comportements.ComportementCombatAvecCheval;
 import Comportements.ComportementCrier;
+import Observateur.Organisation;
 
 public class Chevalier extends Personnage {
 

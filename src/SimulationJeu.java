@@ -1,14 +1,19 @@
 import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
-import Person.*;
+import Fabriques.Scenario.FabriqueScenarioAbstraite;
+import Observateur.Organisation;
+import Person.Personnage;
+import Person.eMode;
 
 import java.util.ArrayList;
 
 public class SimulationJeu {
     ArrayList<Personnage> liste;
     Organisation o;
+    FabriqueScenarioAbstraite f;
 
-    public SimulationJeu() {
+    public SimulationJeu(FabriqueScenarioAbstraite fb) {
+        f = fb;
         liste = new ArrayList<Personnage>();
     }
 
@@ -30,14 +35,8 @@ public class SimulationJeu {
     }
 
     public void creationPersonnages() {
-        this.o = new Organisation();
-        Princesse p = new Princesse("Fiona");
-        Chevalier z = new Chevalier(o, "Zodiac");
-        Fantasssin f = new Fantasssin(o, "Fantastic");
-
-        liste.add(p);
-        liste.add(z);
-        liste.add(f);
+        o = new Organisation();
+        liste = f.CreerPersonnages(o);
     }
 
     public String emmetreUnSonTous() {
