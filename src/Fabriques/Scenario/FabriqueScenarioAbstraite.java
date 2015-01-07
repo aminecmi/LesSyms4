@@ -1,5 +1,6 @@
 package Fabriques.Scenario;
 
+import Cases.CaseAbstraite;
 import Fabriques.Personnages.FabriquePersonnagesAbstraite;
 import Fabriques.Plateau.FabriquePlateauAbstraite;
 import Observateur.Organisation;
@@ -20,7 +21,7 @@ public class FabriqueScenarioAbstraite {
         return this.fPersonnages.CreerPersonages(o);
     }
 
-    public void CreerPlateau() {
-        this.fPlateau.CreerPlateau();
+    public CaseAbstraite[][] CreerPlateau() {
+        return this.fPlateau.CreerPlateau();
     }
 }

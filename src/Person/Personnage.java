@@ -57,4 +57,13 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
     public void setCaseCourante(CaseAbstraite caseCourante) {
         this.caseCourante = caseCourante;
     }
+
+    public void AnalyseSituation() {
+        // Todo
+    }
+
+    public void Execution() {
+        // Todo
+
+    }
 }
