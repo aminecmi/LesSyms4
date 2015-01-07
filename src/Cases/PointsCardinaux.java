@@ -1,8 +1,5 @@
 package Cases;
 
-/**
- * Created by : Amine
- */
 public enum PointsCardinaux {
     N,
     NE,

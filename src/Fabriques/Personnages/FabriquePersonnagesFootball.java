@@ -2,11 +2,8 @@ package Fabriques.Personnages;
 
 import Observateur.Organisation;
 import Person.Arbitre;
-import Person.Chevalier;
-import Person.Fantasssin;
 import Person.JoueurDeChamp;
 import Person.Personnage;
-import Person.Princesse;
 
 import java.util.ArrayList;
 

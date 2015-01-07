@@ -1,7 +1,6 @@
 package Person;
 
 import Cases.CaseAbstraite;
-import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
 import Composition.PersonnagesAbstraits;
 import Observateur.ObservateurAbstrait;
@@ -10,13 +9,11 @@ import Observateur.Organisation;
 public class Personnage extends PersonnagesAbstraits implements ObservateurAbstrait {
     protected CaseAbstraite caseCourante;
     protected String nom;
-    protected ComportementCombat comportementCombat;
     protected ComportementEmmetreSon comportementEmmetreSon;
     protected eMode etatFonctionnement = eMode.ND;
 
     protected Personnage(Organisation etatMajor, String nom) {
         this.nom = nom;
-        this.comportementCombat = null;
         this.comportementEmmetreSon = null;
 
         if (etatMajor != null)
@@ -27,26 +24,12 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return nom;
     }
 
-    public void setComportementCombat(ComportementCombat comportementCombat) {
-        this.comportementCombat = comportementCombat;
-    }
-
     public void setComportementEmmetreSon(ComportementEmmetreSon comportementEmmetreSon) {
         this.comportementEmmetreSon = comportementEmmetreSon;
     }
     public String EmmetreSon() {
         return this.comportementEmmetreSon.emmetreSon();
     }
-
-    public String Combattre() {
-        if (this.comportementCombat != null)
-            return this.comportementCombat.combattre() + " \n" + this.getEtat();
-        else {
-            return "Ohhh, je suis trop faible pour combattre !";
-        }
-    }
-
-
     public void update(eMode comportement) {
         this.etatFonctionnement = comportement;
     }

@@ -1,5 +1,3 @@
-import Comportements.ComportementCombat;
-import Comportements.ComportementEmmetreSon;
 import Fabriques.Scenario.FabriqueScenarioAbstraite;
 import Observateur.Organisation;
 import Person.Personnage;
@@ -26,14 +24,6 @@ public class SimulationJeu {
         return result.toString();
     }
 
-    public void changerComportementCombat(Personnage p, ComportementCombat c){
-        p.setComportementCombat(c);
-    }
-
-    public void changerComportementEmmetreSon(Personnage p, ComportementEmmetreSon c){
-        p.setComportementEmmetreSon(c);
-    }
-
     public void creationPersonnages() {
         o = new Organisation();
         liste = f.CreerPersonnages(o);
@@ -42,7 +32,6 @@ public class SimulationJeu {
     public String emmetreUnSonTous() {
         StringBuilder result = new StringBuilder();
         for (Personnage p: liste) {
-            result.append(p.EmmetreSon());
             result.append(System.getProperty("line.separator"));
         }
         return result.toString();
@@ -51,7 +40,6 @@ public class SimulationJeu {
     public String lancerCombar() {
         StringBuilder result = new StringBuilder();
         for (Personnage p: liste) {
-            result.append(p.Combattre());
             result.append(System.getProperty("line.separator"));
         }
         return result.toString();
