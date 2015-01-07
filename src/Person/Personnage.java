@@ -1,5 +1,6 @@
 package Person;
 
+import Cases.CaseAbstraite;
 import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
 import Composition.PersonnagesAbstraits;
@@ -7,6 +8,7 @@ import Observateur.ObservateurAbstrait;
 import Observateur.Organisation;
 
 public class Personnage extends PersonnagesAbstraits implements ObservateurAbstrait {
+    protected CaseAbstraite caseCourante;
     protected String nom;
     protected ComportementCombat comportementCombat;
     protected ComportementEmmetreSon comportementEmmetreSon;
@@ -63,5 +65,13 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
                 break;
         }
         return etat;
+    }
+
+    public CaseAbstraite getCaseCourante() {
+        return caseCourante;
+    }
+
+    public void setCaseCourante(CaseAbstraite caseCourante) {
+        this.caseCourante = caseCourante;
     }
 }

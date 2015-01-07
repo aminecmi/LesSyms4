@@ -13,6 +13,6 @@ public class Fantasssin extends Personnage {
 
     @Override
     public String getNom() {
-        return "Seraffin " + this.nom + ". A vos ordres";
+        return "Séraphin " + this.nom + ". A vos ordres";
     }
 }
