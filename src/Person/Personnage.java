@@ -2,11 +2,11 @@ package Person;
 
 import Comportements.ComportementCombat;
 import Comportements.ComportementEmmetreSon;
-import Composition.PersonnageAbstrait;
+import Composition.PersonnagesAbstraits;
 import Observateur.ObservateurAbstrait;
 import Observateur.Organisation;
 
-public class Personnage extends PersonnageAbstrait implements ObservateurAbstrait {
+public class Personnage extends PersonnagesAbstraits implements ObservateurAbstrait {
     protected String nom;
     protected ComportementCombat comportementCombat;
     protected ComportementEmmetreSon comportementEmmetreSon;

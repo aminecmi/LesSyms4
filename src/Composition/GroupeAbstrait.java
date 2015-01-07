@@ -1,4 +1,4 @@
 package Composition;
 
-public class GroupeAbstrait extends PersonnageAbstrait {
+public class GroupeAbstrait extends PersonnagesAbstraits {
 }
