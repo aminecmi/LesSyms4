@@ -27,4 +27,8 @@ public abstract class CaseAbstraite {
     public void ajouterOccupant(Personnage occ) {
         this.occupant = occ;
     }
+
+    public Personnage getOccupant() {
+        return occupant;
+    }
 }
