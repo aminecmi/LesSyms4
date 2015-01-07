@@ -8,7 +8,7 @@ import java.util.Random;
 public class PersonnageBattleZone extends Personnage {
     Color couleur;
 
-    protected PersonnageBattleZone(Organisation etatMajor, String nom) {
+    public PersonnageBattleZone(Organisation etatMajor, String nom) {
         super(etatMajor, nom);
 
         // Couleur Aléatoire
