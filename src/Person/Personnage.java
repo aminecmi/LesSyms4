@@ -5,16 +5,17 @@ import Comportements.ComportementEmmetreSon;
 import Composition.PersonnagesAbstraits;
 import Observateur.ObservateurAbstrait;
 import Observateur.Organisation;
+import Observateur.eMode;
 
 public class Personnage extends PersonnagesAbstraits implements ObservateurAbstrait {
     protected CaseAbstraite caseCourante;
     protected String nom;
-    protected ComportementEmmetreSon comportementEmmetreSon;
-    protected eMode etatFonctionnement = eMode.ND;
+    //protected ComportementEmmetreSon comportementEmmetreSon;
+    //protected eMode etatFonctionnement = eMode.ND;
 
     protected Personnage(Organisation etatMajor, String nom) {
         this.nom = nom;
-        this.comportementEmmetreSon = null;
+        //this.comportementEmmetreSon = null;
 
         if (etatMajor != null)
             etatMajor.attach(this);
@@ -24,7 +25,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return nom;
     }
 
-    public void setComportementEmmetreSon(ComportementEmmetreSon comportementEmmetreSon) {
+   /* public void setComportementEmmetreSon(ComportementEmmetreSon comportementEmmetreSon) {
         this.comportementEmmetreSon = comportementEmmetreSon;
     }
     public String EmmetreSon() {
@@ -48,7 +49,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
                 break;
         }
         return etat;
-    }
+    }*/
 
     public CaseAbstraite getCaseCourante() {
         return caseCourante;
@@ -66,4 +67,5 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         // Todo
 
     }
+
 }
