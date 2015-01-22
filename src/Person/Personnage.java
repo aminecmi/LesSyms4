@@ -1,55 +1,100 @@
 package Person;
 
 import Cases.CaseAbstraite;
-import Comportements.ComportementEmmetreSon;
 import Composition.PersonnagesAbstraits;
-import Observateur.ObservateurAbstrait;
-import Observateur.Organisation;
-import Observateur.eMode;
+import Etats.EEtat;
+import Etats.EtatPersonnageAbstrait;
+import Etats.EtatPersonnageKO;
+import Etats.EtatPersonnageOK;
 
-public class Personnage extends PersonnagesAbstraits implements ObservateurAbstrait {
-    protected CaseAbstraite caseCourante;
+public class Personnage extends PersonnagesAbstraits {
+	protected CaseAbstraite caseCourante;
+	private EtatPersonnageAbstrait etatCourant;
     protected String nom;
-    //protected ComportementEmmetreSon comportementEmmetreSon;
-    //protected eMode etatFonctionnement = eMode.ND;
-
-    protected Personnage(Organisation etatMajor, String nom) {
-        this.nom = nom;
-        //this.comportementEmmetreSon = null;
-
-        if (etatMajor != null)
-            etatMajor.attach(this);
+    protected String groupe;
+    protected double pointsDeVie;
+    protected double force;
+    protected double vitesse;
+	
+    protected Personnage(String name, double lifePoint, double strength, double speed) {
+        this.nom = name;
+        this.pointsDeVie=lifePoint;
+        this.force=strength;
+        this.vitesse=speed;
+        
+        this.caseCourante=null;
+        this.etatCourant= new EtatPersonnageOK(this);
     }
+    
+    
+    public void ChangeEtat(EEtat NouvelEtat)
+	{
+		switch(NouvelEtat)
+		{
+			case EtatOK:
+				etatCourant = new EtatPersonnageOK(this);
+				break;
+			case EtatKO:
+				etatCourant = new EtatPersonnageKO(this);
+				break;
+		default:
+			break;
+		
+		}
+		
+	}
+    
+	
+	public EtatPersonnageAbstrait getEtatCourant() {
+		return etatCourant;
+	}
+
+	public void setEtatCourant(EtatPersonnageAbstrait etatCourant) {
+		this.etatCourant = etatCourant;
+	}
+
+	public double getPointsDeVie() {
+		return pointsDeVie;
+	}
+
+	public void setPointsDeVie(double pointsDeVie) {
+		this.pointsDeVie = pointsDeVie;
+	}
+
+	public double getForce() {
+		return force;
+	}
+
+	public void setForce(double force) {
+		this.force = force;
+	}
+
+	public double getVitesse() {
+		return vitesse;
+	}
+
+	public void setVitesse(double vitesse) {
+		this.vitesse = vitesse;
+	}
+	
+	public String getGroupe() {
+		return groupe;
+	}
+
+
+	public void setGroupe(String equipe) {
+		groupe = equipe;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
 
     public String getNom() {
         return nom;
     }
-
-   /* public void setComportementEmmetreSon(ComportementEmmetreSon comportementEmmetreSon) {
-        this.comportementEmmetreSon = comportementEmmetreSon;
-    }
-    public String EmmetreSon() {
-        return this.comportementEmmetreSon.emmetreSon();
-    }
-    public void update(eMode comportement) {
-        this.etatFonctionnement = comportement;
-    }
-
-    public String getEtat() {
-        String etat;
-        switch (etatFonctionnement) {
-            case GUERRE:
-                etat = "En Guerre !";
-                break;
-            case PAIX:
-                etat = "En paix !";
-                break;
-            default:
-                etat = "De quoi ?";
-                break;
-        }
-        return etat;
-    }*/
 
     public CaseAbstraite getCaseCourante() {
         return caseCourante;

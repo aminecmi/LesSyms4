@@ -8,8 +8,10 @@ import java.util.Random;
 public class PersonnageBattleZone extends Personnage {
     Color couleur;
 
-    public PersonnageBattleZone(Organisation etatMajor, String nom) {
-        super(etatMajor, nom);
+	public PersonnageBattleZone(String name, double lifePoint, double strength, double speed) {
+		super(name, lifePoint, strength, speed);
+		// TODO Auto-generated constructor stub
+	
 
         // Couleur Aléatoire
         Random rand = new Random();

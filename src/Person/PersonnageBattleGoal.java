@@ -4,8 +4,8 @@ import Observateur.Organisation;
 
 public class PersonnageBattleGoal extends Personnage {
 
-	protected PersonnageBattleGoal(Organisation etatMajor, String nom) {
-		super(etatMajor, nom);
+	protected PersonnageBattleGoal(String name, double lifePoint, double strength, double speed) {
+		super(name, lifePoint, strength, speed);
 		// TODO Auto-generated constructor stub
 	}
 
