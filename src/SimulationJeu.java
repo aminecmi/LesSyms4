@@ -2,29 +2,11 @@ import Cases.CaseAbstraite;
 import Fabriques.Scenario.FabriqueScenarioAbstraite;
 import Observateur.Organisation;
 import Person.Personnage;
+import utils.InterfaceConsole;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 
 public class SimulationJeu {
@@ -32,7 +14,7 @@ public class SimulationJeu {
     CaseAbstraite[][] plateau;
     Organisation o;
     FabriqueScenarioAbstraite f;
-
+    InterfaceConsole intefaceC;
 
     public SimulationJeu(FabriqueScenarioAbstraite fb) {
         f = fb;
@@ -43,15 +25,18 @@ public class SimulationJeu {
         o = new Organisation();
         personnages = f.CreerPersonnages(o);
 
+        intefaceC = new InterfaceConsole(plateau);
+
     }
 
     public void afficheTous() {
-        StringBuilder result = new StringBuilder();
+        /*StringBuilder result = new StringBuilder();
         for (Personnage p : personnages) {
             result.append(p.getNom());
             result.append(System.getProperty("line.separator"));
         }
-        System.out.println(result.toString());
+        System.out.println(result.toString());*/
+        intefaceC.afficherPlateau();
     }
 
     public void mediationDesConflits() {
@@ -63,7 +48,14 @@ public class SimulationJeu {
     }
 
     public void lancerJeu() {
-        // Todo: positionner les personnages
+        // users displayng
+        Random rand = new Random();
+        for (Personnage p : personnages) {
+            int x = rand.nextInt(plateau.length);
+            int y = rand.nextInt(plateau[x].length);
+            p.setCaseCourante(plateau[x][y]);
+            plateau[x][y].ajouterOccupant(p);
+        }
 
         boolean continuer = true;
         while (continuer) {
@@ -95,24 +87,24 @@ public class SimulationJeu {
         // Todo
     	
     	
-       //Nous allons commencer notre arborescence en créant la racine XML
+       //Nous allons commencer notre arborescence en crï¿½ant la racine XML
 	   //qui sera ici "personnes".
 	  // static Element racine = new Element("personnes");
 
-	   //On crée un nouveau Document JDOM basé sur la racine que l'on vient de créer
+	   //On crï¿½e un nouveau Document JDOM basï¿½ sur la racine que l'on vient de crï¿½er
 	  // static org.jdom.Document document = new Document(racine);
     	   
-    	//On crée un nouvel Element etudiant et on l'ajoute
+    	//On crï¿½e un nouvel Element etudiant et on l'ajoute
         //en tant qu'Element de racine
        // Element etudiant = new Element("etudiant");
         //racine.addContent(etudiant);
 
-        //On crée un nouvel Attribut classe et on l'ajoute à etudiant
-       //grâce à la méthode setAttribute
+        //On crï¿½e un nouvel Attribut classe et on l'ajoute ï¿½ etudiant
+       //grï¿½ce ï¿½ la mï¿½thode setAttribute
        // Attribute classe = new Attribute("classe","P2");
        // etudiant.setAttribute(classe);
 
-        //On crée un nouvel Element nom, on lui assigne du texte
+        //On crï¿½e un nouvel Element nom, on lui assigne du texte
         //et on l'ajoute en tant qu'Element de etudiant
         //Element nom = new Element("nom");
        // nom.setText("CynO");
