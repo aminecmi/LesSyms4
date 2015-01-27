@@ -59,8 +59,7 @@ public class SimulationJeu {
 
         boolean continuer = true;
         while (continuer) {
-            // Todo propagation des informations
-            // Todo Propagation des ordres
+
             for (Personnage p : personnages) {
                 p.AnalyseSituation();
                 p.Execution();

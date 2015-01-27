@@ -1,6 +1,6 @@
 package Person;
 
-import Observateur.Organisation;
+import Comportements.ComportementAction;
 
 import java.awt.*;
 import java.util.Random;
@@ -8,10 +8,10 @@ import java.util.Random;
 public class PersonnageBattleZone extends Personnage {
     Color couleur;
 
-	public PersonnageBattleZone(String name, double lifePoint, double strength, double speed) {
-		super(name, lifePoint, strength, speed);
-		// TODO Auto-generated constructor stub
-	
+    public PersonnageBattleZone(String name, double lifePoint, double strength, double speed, ComportementAction parDefaut) {
+        super(name, lifePoint, strength, speed, parDefaut);
+        // TODO Auto-generated constructor stub
+
 
         // Couleur Aléatoire
         Random rand = new Random();

@@ -1,9 +1,9 @@
 package Fabriques.Personnages;
 
-import java.util.ArrayList;
-
 import Observateur.Organisation;
 import Person.Personnage;
+
+import java.util.ArrayList;
 
 public class FabriquePersonnagesBattleSnow extends FabriquePersonnagesAbstraite  {
 
