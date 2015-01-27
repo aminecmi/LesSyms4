@@ -9,12 +9,22 @@ import Etats.EtatPersonnageOK;
 
 public class Personnage extends PersonnagesAbstraits {
 	protected CaseAbstraite caseCourante;
-	private EtatPersonnageAbstrait etatCourant;
     protected String nom;
     protected String groupe;
     protected double pointsDeVie;
     protected double force;
     protected double vitesse;
+	private EtatPersonnageAbstrait etatCourant;
+
+	protected Personnage(String name) {
+		this.nom = name;
+		this.pointsDeVie = 100;
+		this.force = 10;
+		this.vitesse = 1;
+
+		this.caseCourante = null;
+		this.etatCourant = new EtatPersonnageOK(this);
+	}
 	
     protected Personnage(String name, double lifePoint, double strength, double speed) {
         this.nom = name;
@@ -86,15 +96,13 @@ public class Personnage extends PersonnagesAbstraits {
 		groupe = equipe;
 	}
 
+	public String getNom() {
+		return nom;
+	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-
-    public String getNom() {
-        return nom;
-    }
 
     public CaseAbstraite getCaseCourante() {
         return caseCourante;
