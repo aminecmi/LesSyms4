@@ -2,15 +2,13 @@ package Etats;
 
 import Person.Personnage;
 
-public class EtatPersonnageKO extends EtatPersonnageAbstrait {
-	
-	private int nbTourKO;
+public class EtatPersonnageCombattant extends EtatPersonnageAbstrait {
 
-	public EtatPersonnageKO(Personnage perso) {
+	//Etat d'un personnage avec un marteau, cible les joueurs et ignore le reste.
+	 
+	protected EtatPersonnageCombattant(Personnage perso) {
 		super(perso);
 		// TODO Auto-generated constructor stub
-		
-		this.nbTourKO = 3;
 	}
 
 	@Override
@@ -22,11 +20,6 @@ public class EtatPersonnageKO extends EtatPersonnageAbstrait {
 	@Override
 	public void ExecutionJoueur() {
 		// TODO Auto-generated method stub
-		
-		nbTourKO--;
-		if (nbTourKO==0){
-			this.joueur.ChangeEtat(EEtat.EtatOK);
-		}
 		
 	}
 

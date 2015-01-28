@@ -9,4 +9,8 @@ public abstract class EtatPersonnageAbstrait {
 	protected EtatPersonnageAbstrait(Personnage perso){
 		this.joueur = perso;
 	}
+	
+	public abstract void AnalyseJoueur();
+	public abstract void ExecutionJoueur();
+	public abstract void ConflitJoueur();
 }

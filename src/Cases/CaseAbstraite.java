@@ -1,11 +1,13 @@
 package Cases;
 
+import Objets.ObjetAbstrait;
 import Person.Personnage;
 
 import java.util.HashMap;
 
 public abstract class CaseAbstraite {
     Personnage occupant;
+
 
     HashMap<PointsCardinaux, CaseAbstraite> voisins;
 

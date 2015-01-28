@@ -2,6 +2,7 @@ package Person;
 
 import Cases.CaseAbstraite;
 import Comportements.ComportementAction;
+import Comportements.EAction;
 import Composition.PersonnagesAbstraits;
 import Etats.EEtat;
 import Etats.EtatPersonnageAbstrait;
@@ -9,13 +10,16 @@ import Etats.EtatPersonnageKO;
 import Etats.EtatPersonnageOK;
 
 public class Personnage extends PersonnagesAbstraits {
+
+
 	protected CaseAbstraite caseCourante;
     protected String nom;
     protected String groupe;
     protected double pointsDeVie;
     protected double force;
     protected double vitesse;
-	protected ComportementAction action;
+    protected double porter;
+	protected EAction action;
 	private EtatPersonnageAbstrait etatCourant;
 
 	protected Personnage(String name, ComportementAction c) {
@@ -23,10 +27,11 @@ public class Personnage extends PersonnagesAbstraits {
 		this.pointsDeVie = 100;
 		this.force = 10;
 		this.vitesse = 1;
+		this.porter = 2;
 
 		this.caseCourante = null;
 		this.etatCourant = new EtatPersonnageOK(this);
-		this.action = c;
+		this.action = EAction.Null;
 	}
 
 	protected Personnage(String name, double lifePoint, double strength, double speed, ComportementAction a) {
@@ -37,7 +42,7 @@ public class Personnage extends PersonnagesAbstraits {
         
         this.caseCourante=null;
         this.etatCourant= new EtatPersonnageOK(this);
-		this.action = a;
+		this.action = EAction.Null;
 	}
 
 
@@ -115,14 +120,35 @@ public class Personnage extends PersonnagesAbstraits {
     public void setCaseCourante(CaseAbstraite caseCourante) {
         this.caseCourante = caseCourante;
     }
+    
+	public double getPorter() {
+		return porter;
+	}
+
+	public void setPorter(double porter) {
+		this.porter = porter;
+	}
+
+	public EAction getAction() {
+		return action;
+	}
+
+	public void setAction(EAction action) {
+		this.action = action;
+	}
 
     public void AnalyseSituation() {
         // Todo
+    	etatCourant.AnalyseJoueur();
     }
 
     public void Execution() {
         // Todo
-
+    	etatCourant.ExecutionJoueur();
+    }
+    
+    public void ResoudreLesConflits(){
+    	etatCourant.ConflitJoueur();
     }
 
 }
