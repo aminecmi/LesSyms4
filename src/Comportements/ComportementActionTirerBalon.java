@@ -1,13 +1,11 @@
 package Comportements;
 
-import Cases.CaseAbstraite;
+import Person.Personnage;
 
 public class ComportementActionTirerBalon implements ComportementAction  {
 
-	@Override
-	public void executerAction(CaseAbstraite c) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void executerAction(Personnage joueur) {
 
+    }
 }

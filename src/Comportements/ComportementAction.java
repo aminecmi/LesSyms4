@@ -1,7 +1,7 @@
 package Comportements;
 
-import Cases.CaseAbstraite;
+import Person.Personnage;
 
 public interface ComportementAction {
-    public void executerAction(CaseAbstraite c);
+    public void executerAction(Personnage joueur);
 }

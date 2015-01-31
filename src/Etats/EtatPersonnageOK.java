@@ -23,8 +23,8 @@ public class EtatPersonnageOK extends EtatPersonnageAbstrait {
 	@Override
 	public void ExecutionJoueur() {
 		// TODO Auto-generated method stub
-		Action.executerAction(this.joueur.getCaseCourante());
-	}
+        Action.executerAction(this.joueur);
+    }
 
 	@Override
 	public void ConflitJoueur() {

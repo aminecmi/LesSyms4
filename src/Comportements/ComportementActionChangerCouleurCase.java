@@ -1,15 +1,15 @@
 package Comportements;
 
-import Cases.CaseAbstraite;
 import Cases.CaseColore;
+import Person.Personnage;
 import Person.PersonnageBattleZone;
 
 public class ComportementActionChangerCouleurCase implements ComportementAction {
 
     @Override
-    public void executerAction(CaseAbstraite c) {
-        CaseColore caseColore = (CaseColore) c;
-        PersonnageBattleZone personnage = (PersonnageBattleZone) c.getOccupant();
+    public void executerAction(Personnage p) {
+        CaseColore caseColore = (CaseColore) p.getCaseCourante();
+        PersonnageBattleZone personnage = (PersonnageBattleZone) p;
         caseColore.setCouleur(personnage.getCouleur());
     }
 }
