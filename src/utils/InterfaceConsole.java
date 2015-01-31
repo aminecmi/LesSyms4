@@ -15,7 +15,7 @@ public class InterfaceConsole {
                 if (plateau[i][j].getOccupant() != null) {
                     System.out.print(plateau[i][j].getOccupant().getNom().charAt(0) + " | ");
                 } else {
-                    System.out.print("   | ");
+                    System.out.print(" " + plateau[i][j].affichageSpecial() + " | ");
                 }
             }
             System.out.println();

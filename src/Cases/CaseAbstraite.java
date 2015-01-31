@@ -85,4 +85,6 @@ public abstract class CaseAbstraite {
 	public void setVoisins(HashMap<PointsCardinaux, CaseAbstraite> voisins) {
 		this.voisins = voisins;
 	}
+
+    public abstract String affichageSpecial();
 }
