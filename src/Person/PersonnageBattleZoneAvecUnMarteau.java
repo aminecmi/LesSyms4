@@ -1,6 +1,6 @@
-package Objets;
+package Person;
 
-import Person.PersonnageBattleZone;
+import Objets.ObjetAvecBonusForce;
 
 public class PersonnageBattleZoneAvecUnMarteau extends ObjetAvecBonusForce {
 

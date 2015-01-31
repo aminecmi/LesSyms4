@@ -13,4 +13,6 @@ public abstract class EtatPersonnageAbstrait {
 	public abstract void AnalyseJoueur();
 	public abstract void ExecutionJoueur();
 	public abstract void ConflitJoueur();
+
+    public abstract void mediationConflits();
 }

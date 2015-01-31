@@ -65,7 +65,6 @@ public class Personnage extends PersonnagesAbstraits {
 			break;
 		
 		}
-		
 	}
     
 	
@@ -145,12 +144,10 @@ public class Personnage extends PersonnagesAbstraits {
 	}
 
     public void AnalyseSituation() {
-        // Todo
     	etatCourant.AnalyseJoueur();
     }
 
     public void Execution() {
-        // Todo
     	etatCourant.ExecutionJoueur();
     }
     
@@ -328,4 +325,7 @@ public class Personnage extends PersonnagesAbstraits {
         return personne;
     }
 
+    public void mediationConflits() {
+        etatCourant.mediationConflits();
+    }
 }

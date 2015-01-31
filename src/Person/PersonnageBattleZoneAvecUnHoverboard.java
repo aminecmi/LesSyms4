@@ -1,6 +1,6 @@
-package Objets;
+package Person;
 
-import Person.PersonnageBattleZone;
+import Objets.ObjetAvecBonusVitesse;
 
 public class PersonnageBattleZoneAvecUnHoverboard extends ObjetAvecBonusVitesse {
 

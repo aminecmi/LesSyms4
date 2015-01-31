@@ -30,17 +30,13 @@ public class SimulationJeu {
     }
 
     public void afficheTous() {
-        /*StringBuilder result = new StringBuilder();
-        for (Personnage p : personnages) {
-            result.append(p.getNom());
-            result.append(System.getProperty("line.separator"));
-        }
-        System.out.println(result.toString());*/
         intefaceC.afficherPlateau();
     }
 
     public void mediationDesConflits() {
-        // TODO ?
+        for (Personnage p : personnages) {
+            p.mediationConflits();
+        }
     }
 
     public void recupererInformations() {
@@ -48,14 +44,7 @@ public class SimulationJeu {
     }
 
     public void lancerJeu() {
-        // users displayng
-        Random rand = new Random();
-        for (Personnage p : personnages) {
-            int x = rand.nextInt(plateau.length);
-            int y = rand.nextInt(plateau[x].length);
-            p.setCaseCourante(plateau[x][y]);
-            plateau[x][y].ajouterOccupant(p);
-        }
+        placement();
 
         boolean continuer = true;
         while (continuer) {
@@ -64,7 +53,6 @@ public class SimulationJeu {
                 p.AnalyseSituation();
                 p.Execution();
                 mediationDesConflits();  // utiliser le pattern avec l'historique pour les actions. On pourra faire un retour arrière si conflit + réexecturer
-                miseAJour();
                 recupererInformations();
             }
             afficheTous();
@@ -76,9 +64,14 @@ public class SimulationJeu {
 
     }
 
-    private void miseAJour() {
-        // Todo
-
+    private void placement() {
+        Random rand = new Random();
+        for (Personnage p : personnages) {
+            int x = rand.nextInt(plateau.length);
+            int y = rand.nextInt(plateau[x].length);
+            p.setCaseCourante(plateau[x][y]);
+            plateau[x][y].ajouterOccupant(p);
+        }
     }
 
     // Todo Save

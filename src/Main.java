@@ -1,10 +1,10 @@
 import Fabriques.Personnages.FabriquePersonnagesBattleZone;
 import Fabriques.Plateau.FabriquePlateauBattleZone;
-import Fabriques.Scenario.FabriqueScenarioMoyenAge;
+import Fabriques.Scenario.FabriqueScenarioBattleZone;
 
 public class Main {
     public static void main(String[] args){
-        SimulationJeu s = new SimulationJeu(new FabriqueScenarioMoyenAge(new FabriquePlateauBattleZone(), new FabriquePersonnagesBattleZone()));
+        SimulationJeu s = new SimulationJeu(new FabriqueScenarioBattleZone(new FabriquePlateauBattleZone(), new FabriquePersonnagesBattleZone()));
         s.lancerJeu();
     }
 }
