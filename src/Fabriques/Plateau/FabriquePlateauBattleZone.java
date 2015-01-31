@@ -13,6 +13,11 @@ public class FabriquePlateauBattleZone extends FabriquePlateauAbstraite {
                 plateau[ligne][col] = new CaseColore(col, ligne);
             }
         }
+        for (CaseAbstraite[] tabC : plateau) {
+            for (CaseAbstraite c : tabC) {
+                c.generateVoisins(plateau);
+            }
+        }
         return plateau;
     }
 }

@@ -18,11 +18,36 @@ public abstract class CaseAbstraite {
     public CaseAbstraite(int vert, int hor) {
         coord = new Coordonnees(vert, hor);
 
-        // peupler ici ?
         voisins = new HashMap<PointsCardinaux, CaseAbstraite>();
 
         occupant = null;
         objetOccupant= null;
+    }
+
+    public void generateVoisins(CaseAbstraite[][] plateau) {
+        for (int i = coord.getHor() - 1; i < coord.getHor() + 1; i++) {
+            for (int j = coord.getVert() - 1; j < coord.getVert() + 1; j++) {
+                if (i > 0 && i < plateau.length && j > 0 && j < plateau[0].length) {
+                    if (i == coord.getHor() && j < coord.getVert()) {
+                        voisins.put(PointsCardinaux.N, plateau[i][j]);
+                    } else if (i > coord.getHor() && j < coord.getVert()) {
+                        voisins.put(PointsCardinaux.NE, plateau[i][j]);
+                    } else if (i > coord.getHor() && j == coord.getVert()) {
+                        voisins.put(PointsCardinaux.E, plateau[i][j]);
+                    } else if (i > coord.getHor() && j > coord.getVert()) {
+                        voisins.put(PointsCardinaux.NE, plateau[i][j]);
+                    } else if (i == coord.getHor() && j > coord.getVert()) {
+                        voisins.put(PointsCardinaux.S, plateau[i][j]);
+                    } else if (i < coord.getHor() && j > coord.getVert()) {
+                        voisins.put(PointsCardinaux.SW, plateau[i][j]);
+                    } else if (i < coord.getHor() && j == coord.getVert()) {
+                        voisins.put(PointsCardinaux.W, plateau[i][j]);
+                    } else if (i < coord.getHor() && j < coord.getVert()) {
+                        voisins.put(PointsCardinaux.NW, plateau[i][j]);
+                    }
+                }
+            }
+        }
     }
 
     public void ajouterVoisin(PointsCardinaux p, CaseAbstraite c) {

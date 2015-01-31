@@ -36,4 +36,9 @@ public class EtatPersonnageKO extends EtatPersonnageAbstrait {
 		
 	}
 
+    @Override
+    public void mediationConflits() {
+
+    }
+
 }

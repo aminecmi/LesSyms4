@@ -29,4 +29,9 @@ public class EtatPersonnageCombattant extends EtatPersonnageAbstrait {
 		
 	}
 
+    @Override
+    public void mediationConflits() {
+
+    }
+
 }

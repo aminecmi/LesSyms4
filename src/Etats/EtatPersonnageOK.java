@@ -1,12 +1,6 @@
 package Etats;
 
-import Comportements.ComportementAction;
-import Comportements.ComportementActionChangerCouleurCase;
-import Comportements.ComportementActionRamasserNeige;
-import Comportements.ComportementActionSeDeplacer;
-import Comportements.ComportementActionTirerBalon;
-import Comportements.ComportementActionTirerBouleDeNeige;
-import Comportements.EAction;
+import Comportements.*;
 import Person.Personnage;
 
 public class EtatPersonnageOK extends EtatPersonnageAbstrait {
@@ -16,9 +10,9 @@ public class EtatPersonnageOK extends EtatPersonnageAbstrait {
 	public EtatPersonnageOK(Personnage perso) {
 		super(perso);
 		// TODO Auto-generated constructor stub
-		
-		this.ChangerAction(EAction.Null);
-	}
+
+        this.ChangerAction(EAction.SeDeplacer);
+    }
 
 	@Override
 	public void AnalyseJoueur() {
@@ -37,10 +31,15 @@ public class EtatPersonnageOK extends EtatPersonnageAbstrait {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public void ChangerAction(EAction nouvelAction){
-		
-		switch(nouvelAction)
+
+    @Override
+    public void mediationConflits() {
+
+    }
+
+    public void ChangerAction(EAction nouvelAction) {
+
+        switch(nouvelAction)
 		{
 			case ChangerCouleurCase:
 				Action = new ComportementActionChangerCouleurCase();
@@ -57,10 +56,10 @@ public class EtatPersonnageOK extends EtatPersonnageAbstrait {
 			case TirerBouleDeNeige:
 				Action = new ComportementActionTirerBouleDeNeige();
 				break;
-			case Null:
-				Action = null;
-				break;
-		default:
+            //case Null:
+            //Action = null;
+            //break;
+            default:
 			break;
 		
 		}
