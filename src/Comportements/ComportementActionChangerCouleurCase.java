@@ -13,7 +13,7 @@ import java.util.Random;
 public class ComportementActionChangerCouleurCase implements ComportementAction {
 
     @Override
-    public void executerAction(Personnage p, Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> t) {
+    public void executerAction(Personnage p, Tuple<ArrayList<Personnage>, ArrayList<ObjetAbstrait>, ArrayList<CaseAbstraite>> t) {
         ArrayList<CaseAbstraite> cases = t.c;
         int size = cases.size();
         int item = new Random().nextInt(size);

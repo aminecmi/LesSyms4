@@ -28,9 +28,9 @@ public class Personnage extends PersonnagesAbstraits {
     protected double portee;
     protected EAction action;
     protected ComportementAction Action;
+    HashSet<CaseAbstraite> voisinsActuels = new HashSet<CaseAbstraite>();
     private EtatPersonnageAbstrait etatCourant;
     private HashMap<PointsCardinaux, CaseAbstraite> voisins;
-
 
     protected Personnage(String name, ComportementAction c) {
         this.nom = name;
@@ -45,6 +45,7 @@ public class Personnage extends PersonnagesAbstraits {
 
     }
 
+
     protected Personnage(String name, double lifePoint, double strength, double speed, int portee, ComportementAction a) {
         this.nom = name;
 		this.pointsDeVie=lifePoint;
@@ -58,7 +59,6 @@ public class Personnage extends PersonnagesAbstraits {
 
     }
 
-
 	public void ChangeEtat(EEtat NouvelEtat)
 	{
 		switch(NouvelEtat)
@@ -71,38 +71,36 @@ public class Personnage extends PersonnagesAbstraits {
 				break;
 		default:
 			break;
-		
+
 		}
 	}
 
-    public Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> AnalyseSituation() {
+    public Tuple<ArrayList<Personnage>, ArrayList<ObjetAbstrait>, ArrayList<CaseAbstraite>> AnalyseSituation() {
         HashSet<CaseAbstraite> voisinsDesVoisins = getCaseAbstraitesForPortee();
+        voisinsActuels = new HashSet<CaseAbstraite>();
+        voisinsDesVoisins.remove(this.getCaseCourante());
         ArrayList<CaseAbstraite> casesVoisines = new ArrayList<CaseAbstraite>(voisinsDesVoisins);
         ArrayList<ObjetAbstrait> objets = rechercheObjetProche(voisinsDesVoisins);
         ArrayList<Personnage> personnages = rechercheJoueur(voisinsDesVoisins);
 
-        casesVoisines.remove(this.caseCourante);
-        return new Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>>(objets, personnages, casesVoisines);
+        return new Tuple<ArrayList<Personnage>, ArrayList<ObjetAbstrait>, ArrayList<CaseAbstraite>>(personnages, objets, casesVoisines);
     }
 
-    public void Execution(Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> t) {
+    public void Execution(Tuple<ArrayList<Personnage>, ArrayList<ObjetAbstrait>, ArrayList<CaseAbstraite>> t) {
         Action.executerAction(this, t);
     }
 
-
-    public HashMap<PointsCardinaux, CaseAbstraite> voisinsPortee(CaseAbstraite c, int rayon) {
-        HashMap<PointsCardinaux, CaseAbstraite> voisinsActuels = new HashMap<PointsCardinaux, CaseAbstraite>();
+    public HashSet<CaseAbstraite> voisinsPortee(CaseAbstraite c, int rayon) {
         HashMap<PointsCardinaux, CaseAbstraite> v = c.getVoisins();
         if ((rayon + 1) == this.getPortee()) {
-            // voisinsActuels.putAll(v);
-            return c.getVoisins();
+            voisinsActuels.addAll(c.getVoisins().values());
         } else {
             int r = rayon + 1;
             for (PointsCardinaux mapKey : v.keySet()) {
-                voisinsActuels.putAll(voisinsPortee(v.get(mapKey), r));
+                voisinsActuels.addAll(voisinsPortee(v.get(mapKey), r));
             }
-            return voisinsActuels;
         }
+        return voisinsActuels;
     }
 
     public ArrayList<ObjetAbstrait> rechercheObjetProche(HashSet<CaseAbstraite> voisinsDesVoisins) {
@@ -117,9 +115,9 @@ public class Personnage extends PersonnagesAbstraits {
     }
 
     protected HashSet<CaseAbstraite> getCaseAbstraitesForPortee() {
-        HashSet<CaseAbstraite> voisinsDesVoisins = new HashSet<CaseAbstraite>();
-        voisinsDesVoisins.addAll(voisinsPortee(this.caseCourante, 0).values());
-        return voisinsDesVoisins;
+        HashSet<CaseAbstraite> voisins = voisinsPortee(this.caseCourante, 0);
+        voisins.remove(getCaseCourante());
+        return voisins;
     }
 
 

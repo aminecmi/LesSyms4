@@ -7,7 +7,6 @@ import Objets.ObjetAvecBonusVitesse;
 import Observateur.Organisation;
 import Person.Personnage;
 import utils.InterfaceConsole;
-import utils.Tuple;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,6 +34,7 @@ public class SimulationJeu {
     }
 
     public void afficheTous() {
+        System.out.println("");
         intefaceC.afficherPlateau();
     }
 
@@ -51,8 +51,7 @@ public class SimulationJeu {
         afficheTous();
         while (continuer) {
             for (Personnage p : personnages) {
-                Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> t = p.AnalyseSituation();
-                p.Execution(t);
+                p.Execution(p.AnalyseSituation());
                 recupererInformations();
             }
             placerDesObjets();
@@ -84,6 +83,8 @@ public class SimulationJeu {
         for (Personnage p : personnages) {
             int x = rand.nextInt(plateau.length);
             int y = rand.nextInt(plateau[x].length);
+//            int x = 0;
+//            int y = 0;
             p.setCaseCourante(plateau[x][y]);
             plateau[x][y].ajouterOccupant(p);
         }
