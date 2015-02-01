@@ -1,8 +1,10 @@
 import Cases.CaseAbstraite;
 import Fabriques.Scenario.FabriqueScenarioAbstraite;
+import Objets.ObjetAbstrait;
 import Observateur.Organisation;
 import Person.Personnage;
 import utils.InterfaceConsole;
+import utils.Tuple;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,29 +35,24 @@ public class SimulationJeu {
         intefaceC.afficherPlateau();
     }
 
-    public void mediationDesConflits() {
-        for (Personnage p : personnages) {
-            p.mediationConflits();
-        }
-    }
-
     public void recupererInformations() {
-        // TODO récup infos + statistics + maj infos observateur ?
+        for (Personnage p : personnages) {
+
+        }
     }
 
     public void lancerJeu() {
         placement();
 
         boolean continuer = true;
+        afficheTous();
         while (continuer) {
-            afficheTous();
             for (Personnage p : personnages) {
-                p.AnalyseSituation();
-                p.Execution();
-                mediationDesConflits();  // utiliser le pattern avec l'historique pour les actions. On pourra faire un retour arrière si conflit + réexecturer
+                Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> t = p.AnalyseSituation();
+                p.Execution(t);
                 recupererInformations();
             }
-
+            afficheTous();
             // bloquer le tour jusqu'a toucher une touche du clavier.
             Scanner s = new Scanner(System.in);
             s.nextLine();

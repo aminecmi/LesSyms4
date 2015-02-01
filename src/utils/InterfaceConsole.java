@@ -10,12 +10,12 @@ public class InterfaceConsole {
     }
 
     public void afficherPlateau() {
-        for (int i = 0; i < plateau.length; i++) {
-            for (int j = 0; j < plateau[i].length; j++) {
-                if (plateau[i][j].getOccupant() != null) {
-                    System.out.print(plateau[i][j].getOccupant().getNom().charAt(0) + " | ");
+        for (CaseAbstraite[] aPlateau : plateau) {
+            for (CaseAbstraite anAPlateau : aPlateau) {
+                if (anAPlateau.getOccupant() != null) {
+                    System.out.print(anAPlateau.getOccupant().getNom().charAt(0) + " | ");
                 } else {
-                    System.out.print(" " + plateau[i][j].affichageSpecial() + " | ");
+                    System.out.print(" " + anAPlateau.affichageSpecial() + " | ");
                 }
             }
             System.out.println();

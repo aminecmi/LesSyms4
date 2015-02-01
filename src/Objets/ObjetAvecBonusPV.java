@@ -8,5 +8,7 @@ public class ObjetAvecBonusPV extends ObjetAbstrait {
 		// TODO Auto-generated constructor stub
 	}
 
-    public double getPointsDeVie()  {return perso.getPointsDeVie() + 80;}
+	public double getPointsDeVie() {
+		return 80;
+	}
 }

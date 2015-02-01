@@ -7,6 +7,8 @@ public class ObjetAvecBonusVitesse extends ObjetAbstrait {
 		super(name, lifePoint, strength, speed);
 		// TODO Auto-generated constructor stub
 	}
-	
-    public double getPointsDeVie()  {return perso.getVitesse() + 2;}
+
+	public double getPointsDeVie() {
+		return 2;
+	}
 }

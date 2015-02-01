@@ -87,4 +87,12 @@ public abstract class CaseAbstraite {
 	}
 
     public abstract String affichageSpecial();
+
+    public Coordonnees getCoord() {
+        return coord;
+    }
+
+    public void setCoord(Coordonnees coord) {
+        this.coord = coord;
+    }
 }

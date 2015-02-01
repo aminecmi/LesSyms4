@@ -9,6 +9,7 @@ import Etats.EtatPersonnageAbstrait;
 import Etats.EtatPersonnageKO;
 import Etats.EtatPersonnageOK;
 import Objets.ObjetAbstrait;
+import utils.Tuple;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class Personnage extends PersonnagesAbstraits {
 
 
 	protected CaseAbstraite caseCourante;
+    protected ObjetAbstrait objet;
     protected String nom;
     protected String groupe;
     protected double pointsDeVie;
@@ -72,96 +74,21 @@ public class Personnage extends PersonnagesAbstraits {
 		
 		}
 	}
-    
-	
-	public EtatPersonnageAbstrait getEtatCourant() {
-		return etatCourant;
-	}
 
-	public void setEtatCourant(EtatPersonnageAbstrait etatCourant) {
-		this.etatCourant = etatCourant;
-	}
+    public Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> AnalyseSituation() {
+        HashSet<CaseAbstraite> voisinsDesVoisins = getCaseAbstraitesForPortee();
+        ArrayList<CaseAbstraite> casesVoisines = new ArrayList<CaseAbstraite>(voisinsDesVoisins);
+        ArrayList<ObjetAbstrait> objets = rechercheObjetProche(voisinsDesVoisins);
+        ArrayList<Personnage> personnages = rechercheJoueur(voisinsDesVoisins);
 
-	public double getPointsDeVie() {
-		return pointsDeVie;
-	}
-
-	public void setPointsDeVie(double pointsDeVie) {
-		this.pointsDeVie = pointsDeVie;
-	}
-
-	public double getForce() {
-		return force;
-	}
-
-	public void setForce(double force) {
-		this.force = force;
-	}
-
-	public double getVitesse() {
-		return vitesse;
-	}
-
-	public void setVitesse(double vitesse) {
-		this.vitesse = vitesse;
-	}
-	
-	public String getGroupe() {
-		return groupe;
-	}
-
-
-	public void setGroupe(String equipe) {
-		groupe = equipe;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-    public CaseAbstraite getCaseCourante() {
-        return caseCourante;
+        casesVoisines.remove(this.caseCourante);
+        return new Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>>(objets, personnages, casesVoisines);
     }
 
-    public void setCaseCourante(CaseAbstraite caseCourante) {
-        this.caseCourante = caseCourante;
-        this.voisins = this.caseCourante.getVoisins();
-
+    public void Execution(Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> t) {
+        Action.executerAction(this, t);
     }
 
-    public double getPortee() {
-        return portee;
-    }
-
-    public void setPortee(double portee) {
-        this.portee = portee;
-    }
-
-	public EAction getAction() {
-		return action;
-	}
-
-	public void setAction(EAction action) {
-		this.action = action;
-	}
-
-    public void AnalyseSituation() {
-        ArrayList<ObjetAbstrait> objets = rechercheObjetProche();
-        ArrayList<Personnage> personnages = rechercheJoueur();
-    }
-
-    public void Execution() {
-        Action.executerAction(this);
-    }
-    
-    public void ResoudreLesConflits(){
-
-
-    }
 
     public HashMap<PointsCardinaux, CaseAbstraite> voisinsPortee(CaseAbstraite c, int rayon) {
         HashMap<PointsCardinaux, CaseAbstraite> voisinsActuels = new HashMap<PointsCardinaux, CaseAbstraite>();
@@ -178,11 +105,8 @@ public class Personnage extends PersonnagesAbstraits {
         }
     }
 
-    public ArrayList<ObjetAbstrait> rechercheObjetProche() {
-
+    public ArrayList<ObjetAbstrait> rechercheObjetProche(HashSet<CaseAbstraite> voisinsDesVoisins) {
         ArrayList<ObjetAbstrait> objetsVoisins = new ArrayList<ObjetAbstrait>();
-
-        HashSet<CaseAbstraite> voisinsDesVoisins = getCaseAbstraitesForPortee();
 
         for (CaseAbstraite c : voisinsDesVoisins) {
             if (c.getObjetOccupant() != null) {
@@ -199,11 +123,8 @@ public class Personnage extends PersonnagesAbstraits {
     }
 
 
-    public ArrayList<Personnage> rechercheJoueur() {
+    public ArrayList<Personnage> rechercheJoueur(HashSet<CaseAbstraite> voisinsDesVoisins) {
         ArrayList<Personnage> personnes = new ArrayList<Personnage>();
-
-        HashSet<CaseAbstraite> voisinsDesVoisins = getCaseAbstraitesForPortee();
-
         for (CaseAbstraite c : voisinsDesVoisins) {
             if (c.getOccupant() != null) {
                 personnes.add(c.getOccupant());
@@ -242,5 +163,80 @@ public class Personnage extends PersonnagesAbstraits {
         }
 
         this.setAction(nouvelAction);
+    }
+
+    public ObjetAbstrait getObjet() {
+        return objet;
+    }
+
+    public void setObjet(ObjetAbstrait objet) {
+        this.objet = objet;
+    }
+
+    public double getPointsDeVie() {
+        double bonus = 0;
+        if (getObjet() != null) {
+            bonus = getObjet().getPointsDeVie();
+        }
+        return bonus + pointsDeVie;
+    }
+
+    public double getForce() {
+        double bonus = 0;
+        if (getObjet() != null) {
+            bonus = getObjet().getForce();
+        }
+        return bonus + force;
+    }
+
+    public double getVitesse() {
+        double bonus = 0;
+        if (getObjet() != null) {
+            bonus = getObjet().getVitesse();
+        }
+        return bonus + vitesse;
+    }
+
+    public String getGroupe() {
+        return groupe;
+    }
+
+
+    public void setGroupe(String equipe) {
+        groupe = equipe;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public CaseAbstraite getCaseCourante() {
+        return caseCourante;
+    }
+
+    public void setCaseCourante(CaseAbstraite caseCourante) {
+        this.caseCourante = caseCourante;
+        this.voisins = this.caseCourante.getVoisins();
+
+    }
+
+    public double getPortee() {
+        return portee;
+    }
+
+    public EAction getAction() {
+        return action;
+    }
+
+    public void setAction(EAction action) {
+        this.action = action;
+    }
+
+    public HashMap<PointsCardinaux, CaseAbstraite> getVoisins() {
+        return voisins;
+    }
+
+    public void setVoisins(HashMap<PointsCardinaux, CaseAbstraite> voisins) {
+        this.voisins = voisins;
     }
 }

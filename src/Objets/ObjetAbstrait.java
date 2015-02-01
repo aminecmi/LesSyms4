@@ -1,11 +1,9 @@
 package Objets;
 
 import Cases.CaseAbstraite;
-import Person.Personnage;
 
 public abstract class ObjetAbstrait {
 	protected CaseAbstraite caseCourante;
-	protected Personnage perso;
 	protected String nom;
 	protected double pointsDeVie;
 	protected double force;
@@ -16,8 +14,6 @@ public abstract class ObjetAbstrait {
 		this.pointsDeVie = 100;
 		this.force = 10;
 		this.vitesse = 1;
-
-		this.perso = null;
 		this.caseCourante = null;
 	}
 
@@ -26,9 +22,7 @@ public abstract class ObjetAbstrait {
 		this.pointsDeVie=lifePoint;
 		this.force=strength;
 		this.vitesse=speed;
-
 		this.caseCourante=null;
-		this.perso = null;
 	}
 
 	public CaseAbstraite getCaseCourante() {
@@ -69,13 +63,5 @@ public abstract class ObjetAbstrait {
 
 	public void setVitesse(double vitesse) {
 		this.vitesse = vitesse;
-	}
-
-	public Personnage getPerso() {
-		return perso;
-	}
-
-	public void setPerso(Personnage perso) {
-		this.perso = perso;
 	}
 }

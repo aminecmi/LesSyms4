@@ -1,27 +1,30 @@
 package Comportements;
 
 import Cases.CaseAbstraite;
-import Cases.PointsCardinaux;
-import Cases.RandomPointCardinal;
+import Objets.ObjetAbstrait;
 import Person.Personnage;
+import utils.Tuple;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class ComportementActionSeDeplacer implements ComportementAction  {
 
 	@Override
-    public void executerAction(Personnage perso) {
+    public void executerAction(Personnage perso, Tuple<ArrayList<ObjetAbstrait>, ArrayList<Personnage>, ArrayList<CaseAbstraite>> t) {
+        ArrayList<CaseAbstraite> cases = t.c;
+        int size = cases.size();
+        int item = new Random().nextInt(size);
+        System.out.println("Je suis en " + perso.getCaseCourante().getCoord().toString());
+
         CaseAbstraite c = perso.getCaseCourante();
-        HashMap<PointsCardinaux, CaseAbstraite> voisins = c.getVoisins();
-        RandomPointCardinal<PointsCardinaux> p = new RandomPointCardinal<PointsCardinaux>(PointsCardinaux.class);
-        PointsCardinaux point = null;
-        do {
-            point = p.random();
-        } while (voisins.get(point) == null);
-        CaseAbstraite destination = voisins.get(point);
+
+        CaseAbstraite destination = cases.get(item);
         destination.setOccupant(perso);
         perso.setCaseCourante(destination);
         c.setOccupant(null);
+        System.out.println("Je suis en " + perso.getCaseCourante().getCoord().toString());
+
     }
 
 }

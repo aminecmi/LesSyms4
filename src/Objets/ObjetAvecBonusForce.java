@@ -8,6 +8,12 @@ public class ObjetAvecBonusForce extends ObjetAbstrait {
 		super(name, lifePoint, strength, speed);
 		// TODO Auto-generated constructor stub
 	}
-	public double getPointsDeVie()  {return perso.getPointsDeVie() + 20;}
-    public double getForce() {return perso.getForce() + 0.5;}	
+
+	public double getPointsDeVie() {
+		return 20;
+	}
+
+	public double getForce() {
+		return 0.5;
+	}
 }
