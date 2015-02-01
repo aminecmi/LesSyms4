@@ -1,15 +1,10 @@
 import Cases.CaseAbstraite;
 import Fabriques.Scenario.FabriqueScenarioAbstraite;
-import Objets.ObjetAbstrait;
-import Objets.ObjetAvecBonusForce;
-import Objets.ObjetAvecBonusPV;
-import Objets.ObjetAvecBonusVitesse;
 import Observateur.Organisation;
 import Person.Personnage;
 import utils.InterfaceConsole;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 
@@ -45,7 +40,6 @@ public class SimulationJeu {
     }
 
     public void lancerJeu() {
-        placement();
 
         boolean continuer = true;
         afficheTous();
@@ -54,48 +48,14 @@ public class SimulationJeu {
                 p.Execution(p.AnalyseSituation());
                 recupererInformations();
             }
-            placerDesObjets();
+            f.tourParTour(plateau);
             afficheTous();
+
             // bloquer le tour jusqu'a toucher une touche du clavier.
             Scanner s = new Scanner(System.in);
             s.nextLine();
         }
 
-    }
-
-    private void placerDesObjets() {
-        if (new Random().nextInt(2) == 1) {
-            if (new Random().nextInt(3) == 1) {
-                placementObjet(new ObjetAvecBonusPV("Toto", 10, 10, 10));
-            }
-            if (new Random().nextInt(3) == 2) {
-                placementObjet(new ObjetAvecBonusVitesse("Toto", 10, 10, 10));
-
-            }
-            if (new Random().nextInt(3) == 3) {
-                placementObjet(new ObjetAvecBonusForce("tptp", 10, 10, 10));
-            }
-        }
-    }
-
-    private void placement() {
-        Random rand = new Random();
-        for (Personnage p : personnages) {
-            int x = rand.nextInt(plateau.length);
-            int y = rand.nextInt(plateau[x].length);
-//            int x = 0;
-//            int y = 0;
-            p.setCaseCourante(plateau[x][y]);
-            plateau[x][y].ajouterOccupant(p);
-        }
-    }
-
-    private void placementObjet(ObjetAbstrait o) {
-        Random rand = new Random();
-        int x = rand.nextInt(plateau.length);
-        int y = rand.nextInt(plateau[x].length);
-        o.setCaseCourante(plateau[x][y]);
-        plateau[x][y].setObjetOccupant(o);
     }
 
     // Todo Save

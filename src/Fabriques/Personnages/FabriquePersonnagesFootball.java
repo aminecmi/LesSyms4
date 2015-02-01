@@ -1,5 +1,6 @@
 package Fabriques.Personnages;
 
+import Cases.CaseAbstraite;
 import Comportements.ComportementAction;
 import Comportements.ComportementActionTirerBalon;
 import Observateur.Organisation;
@@ -13,9 +14,9 @@ public class FabriquePersonnagesFootball extends FabriquePersonnagesAbstraite {
     ComportementAction parDefaut = new ComportementActionTirerBalon();
 
     @Override
-    public ArrayList<Personnage> CreerPersonages(Organisation o) {
-    	
-    	// Add referee
+    public ArrayList<Personnage> CreerPersonages(Organisation o, CaseAbstraite[][] plateau) {
+
+        // Add referee
     	Arbitre arbitre = new Arbitre("Colina");
     	
     	

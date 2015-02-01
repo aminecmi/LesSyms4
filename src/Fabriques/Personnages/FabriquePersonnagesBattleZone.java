@@ -1,5 +1,6 @@
 package Fabriques.Personnages;
 
+import Cases.CaseAbstraite;
 import Comportements.ComportementAction;
 import Comportements.ComportementActionChangerCouleurCase;
 import Observateur.Organisation;
@@ -10,8 +11,9 @@ import java.util.ArrayList;
 
 public class FabriquePersonnagesBattleZone extends FabriquePersonnagesAbstraite {
     protected ComportementAction parDefaut = new ComportementActionChangerCouleurCase();
+
     @Override
-    public ArrayList<Personnage> CreerPersonages(Organisation o) {
+    public ArrayList<Personnage> CreerPersonages(Organisation o, CaseAbstraite[][] plateau) {
         ArrayList<Personnage> list = new ArrayList<Personnage>();
 
         PersonnageBattleZone p1 = new PersonnageBattleZone("Bob", 100.0, 1.0, 1.0, 2, parDefaut);
@@ -22,6 +24,8 @@ public class FabriquePersonnagesBattleZone extends FabriquePersonnagesAbstraite 
         //list.add(p3);
         //PersonnageBattleZone p4 = new PersonnageBattleZone("Zac", 100.0, 1.0, 1.0, 2, parDefaut);
         //list.add(p4);
+
+        this.placement(list, plateau);
         return list;
     }
 }
