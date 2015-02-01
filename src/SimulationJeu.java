@@ -24,6 +24,8 @@ public class SimulationJeu {
         o = new Organisation();
         personnages = f.CreerPersonnages(o, plateau);
 
+        f.creerObjets(plateau);
+
         intefaceC = new InterfaceConsole(plateau);
 
     }

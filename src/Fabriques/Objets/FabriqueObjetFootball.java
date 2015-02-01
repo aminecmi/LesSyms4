@@ -2,12 +2,15 @@ package Fabriques.Objets;
 
 import Cases.CaseAbstraite;
 import Objets.ObjetAbstrait;
+import Objets.ObjetBallon;
 
 import java.util.ArrayList;
 
 public class FabriqueObjetFootball extends FabriqueObjetAbstraite {
     @Override
     public ArrayList<ObjetAbstrait> creerObjets(CaseAbstraite[][] plateau) {
-        return null;
+        ArrayList<ObjetAbstrait> objs = new ArrayList<ObjetAbstrait>();
+        objs.add(new ObjetBallon());
+        return objs;
     }
 }

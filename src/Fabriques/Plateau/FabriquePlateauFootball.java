@@ -2,7 +2,7 @@ package Fabriques.Plateau;
 
 import Cases.CaseAbstraite;
 
-public class FabriquePlateauBattleGoal extends FabriquePlateauAbstraite  {
+public class FabriquePlateauFootball extends FabriquePlateauAbstraite {
 
 	@Override
 	public CaseAbstraite[][] CreerPlateau() {

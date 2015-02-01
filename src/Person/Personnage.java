@@ -41,8 +41,7 @@ public class Personnage extends PersonnagesAbstraits {
 
 		this.caseCourante = null;
 		this.etatCourant = new EtatPersonnageOK(this);
-        this.ChangerAction(EAction.SeDeplacer);
-
+        this.Action = c;
     }
 
 
@@ -56,7 +55,7 @@ public class Personnage extends PersonnagesAbstraits {
         this.caseCourante=null;
         this.etatCourant= new EtatPersonnageOK(this);
         this.ChangerAction(EAction.SeDeplacer);
-
+        this.Action = a;
     }
 
 	public void ChangeEtat(EEtat NouvelEtat)
@@ -142,9 +141,6 @@ public class Personnage extends PersonnagesAbstraits {
         switch (nouvelAction) {
             case ChangerCouleurCase:
                 Action = new ComportementActionChangerCouleurCase();
-                break;
-            case RamasserNeige:
-                Action = new ComportementActionRamasserNeige();
                 break;
             case SeDeplacer:
                 Action = new ComportementActionSeDeplacer();

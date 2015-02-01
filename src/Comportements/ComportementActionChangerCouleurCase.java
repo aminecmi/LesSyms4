@@ -14,18 +14,32 @@ public class ComportementActionChangerCouleurCase implements ComportementAction 
 
     @Override
     public void executerAction(Personnage p, Tuple<ArrayList<Personnage>, ArrayList<ObjetAbstrait>, ArrayList<CaseAbstraite>> t) {
-        ArrayList<CaseAbstraite> cases = t.c;
+        ArrayList<CaseColore> cases = (ArrayList<CaseColore>) t.c.clone();
+        ArrayList<Personnage> persos = (ArrayList<Personnage>) t.p.clone();
+
+        for (Personnage personnage : persos) {
+            cases.remove(personnage.getCaseCourante());
+        }
+
+        PersonnageBattleZone pb = (PersonnageBattleZone) p;
+        ArrayList<CaseColore> remove = new ArrayList<CaseColore>();
+        for (CaseColore ca : cases) {
+            if (ca.getCouleur().equals(pb.getCouleur())) {
+                remove.add(ca);
+            }
+        }
+        cases.removeAll(remove);
+
         int size = cases.size();
         int item = new Random().nextInt(size);
         CaseColore caseColore = (CaseColore) p.getCaseCourante();
-        PersonnageBattleZone personnage = (PersonnageBattleZone) p;
         caseColore.setOccupant(null);
 
         CaseColore dest = (CaseColore) cases.get(item);
         dest.setOccupant(p);
         p.setCaseCourante(dest);
 
-        dest.setCouleur(personnage.getCouleur());
+        dest.setCouleur(pb.getCouleur());
 
     }
 }
