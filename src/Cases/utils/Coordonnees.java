@@ -1,4 +1,4 @@
-package Cases;
+package Cases.utils;
 
 public class Coordonnees {
     private int col;

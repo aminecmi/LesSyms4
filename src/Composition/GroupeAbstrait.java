@@ -1,11 +1,21 @@
 package Composition;
 
+import Person.Personnage;
+
 import java.util.ArrayList;
 
 public class GroupeAbstrait extends PersonnagesAbstraits {
-    ArrayList<PersonnagesAbstraits> list = new ArrayList<PersonnagesAbstraits>();
+    ArrayList<Personnage> list = new ArrayList<Personnage>();
 
-    public GroupeAbstrait(ArrayList<PersonnagesAbstraits> list) {
+    public GroupeAbstrait(ArrayList<Personnage> list) {
+        this.list = list;
+    }
+
+    public ArrayList<Personnage> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<Personnage> list) {
         this.list = list;
     }
 }

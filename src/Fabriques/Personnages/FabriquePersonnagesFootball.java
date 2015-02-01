@@ -3,8 +3,11 @@ package Fabriques.Personnages;
 import Cases.CaseAbstraite;
 import Comportements.ComportementAction;
 import Comportements.ComportementActionTirerBalon;
+import Composition.EquipeDeFoot;
+import Composition.PersonnagesAbstraits;
 import Observateur.Organisation;
 import Person.Personnage;
+import Person.PersonnageFootball;
 
 import java.util.ArrayList;
 
@@ -13,27 +16,32 @@ public class FabriquePersonnagesFootball extends FabriquePersonnagesAbstraite {
 
     @Override
     public ArrayList<Personnage> CreerPersonages(Organisation o, CaseAbstraite[][] plateau) {
+        ArrayList<Personnage> list = new ArrayList<Personnage>();
 
-        // TODO: Add players to team 1
+        PersonnageFootball p1 = new PersonnageFootball("Bob", 100.0, 1.0, 1.0, 2, parDefaut);
+        list.add(p1);
+        PersonnageFootball p2 = new PersonnageFootball("Jo", 100.0, 1.0, 1.0, 2, parDefaut);
+        list.add(p2);
+        PersonnageFootball p3 = new PersonnageFootball("Max", 100.0, 1.0, 1.0, 2, parDefaut);
+        list.add(p3);
+        PersonnageFootball p4 = new PersonnageFootball("Zac", 100.0, 1.0, 1.0, 2, parDefaut);
+        list.add(p4);
 
+        ArrayList<Personnage> l1 = (ArrayList<Personnage>) list.subList(0, 2);
+        ArrayList<Personnage> l2 = (ArrayList<Personnage>) list.subList(2, 4);
+        EquipeDeFoot e1 = new EquipeDeFoot(l1, "E1");
+        EquipeDeFoot e2 = new EquipeDeFoot(l2, "E2");
 
-        // TODO: Add team 2
-    	
-    	// TODO: Add players to team 2
-    	
-    	/*
-        Princesse p = new Princesse("Fiona");
-        Chevalier z = new Chevalier(o, "Zodiac");
-        Fantasssin f = new Fantasssin(o, "Fantastic");
+        for (PersonnagesAbstraits p : e1.getList()) {
+            PersonnageFootball pf = (PersonnageFootball) p;
+            pf.setEquipe(e1);
+        }
 
-        ArrayList<Personnage> liste = new ArrayList<Personnage>();
-        liste.add(p);
-        liste.add(z);
-        liste.add(f);
-        return liste;
-        */
-    	
-    	// TODO: Return two teams containg all players
-    	return null;
+        for (PersonnagesAbstraits p : e2.getList()) {
+            PersonnageFootball pf = (PersonnageFootball) p;
+            pf.setEquipe(e2);
+        }
+
+        return list;
     }
 }

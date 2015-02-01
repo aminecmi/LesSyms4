@@ -1,5 +1,7 @@
 package Cases;
 
+import Cases.utils.Coordonnees;
+import Cases.utils.PointsCardinaux;
 import Objets.ObjetAbstrait;
 import Person.Personnage;
 
@@ -86,7 +88,9 @@ public abstract class CaseAbstraite {
 		this.voisins = voisins;
 	}
 
-    public abstract String affichageSpecial();
+    public String affichageSpecial() {
+        return " ";
+    }
 
     public Coordonnees getCoord() {
         return coord;

@@ -10,7 +10,6 @@ public class CaseColore extends CaseAbstraite {
         this.couleur = Color.WHITE;
     }
 
-    @Override
     public String affichageSpecial() {
         if (this.couleur.getRGB() < 0)
             return String.valueOf(String.valueOf(this.couleur.getRGB()).charAt(0));

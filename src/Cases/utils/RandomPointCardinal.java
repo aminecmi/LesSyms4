@@ -1,4 +1,4 @@
-package Cases;
+package Cases.utils;
 
 import java.util.Random;
 

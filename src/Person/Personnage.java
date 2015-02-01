@@ -1,7 +1,7 @@
 package Person;
 
 import Cases.CaseAbstraite;
-import Cases.PointsCardinaux;
+import Cases.utils.PointsCardinaux;
 import Comportements.*;
 import Composition.PersonnagesAbstraits;
 import Etats.EEtat;
