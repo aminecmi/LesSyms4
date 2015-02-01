@@ -22,7 +22,7 @@ public class SimulationJeu {
 
         // L'organisation dans les personnages. On aura une orga spécifique pour chaque
         o = new Organisation();
-        personnages = f.CreerPersonnages(o);
+        personnages = f.CreerPersonnages(o, plateau);
 
         intefaceC = new InterfaceConsole(plateau);
 

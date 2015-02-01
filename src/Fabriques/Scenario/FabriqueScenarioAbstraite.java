@@ -21,8 +21,8 @@ public abstract class FabriqueScenarioAbstraite {
         this.fObjs = fObjs;
     }
 
-    public ArrayList<Personnage> CreerPersonnages(Organisation o) {
-        return this.fPersonnages.CreerPersonages(o);
+    public ArrayList<Personnage> CreerPersonnages(Organisation o, CaseAbstraite[][] plateau) {
+        return this.fPersonnages.CreerPersonages(o, plateau);
     }
 
     public CaseAbstraite[][] CreerPlateau() {
