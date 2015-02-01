@@ -12,8 +12,9 @@ public class InterfaceConsole {
     public void afficherPlateau() {
         for (CaseAbstraite[] aPlateau : plateau) {
             for (CaseAbstraite anAPlateau : aPlateau) {
-                if (anAPlateau.getOccupant() != null) {
-                    System.out.print(anAPlateau.getOccupant().getNom().charAt(0) + " | ");
+                if (anAPlateau.getOccupant() != null || anAPlateau.getObjetOccupant() != null) {
+                    char occ = ((anAPlateau.getOccupant() != null) ? anAPlateau.getOccupant().getNom().charAt(0) : anAPlateau.getObjetOccupant().getNom().charAt(0));
+                    System.out.print(occ + " | ");
                 } else {
                     System.out.print(" " + anAPlateau.affichageSpecial() + " | ");
                 }
