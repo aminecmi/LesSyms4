@@ -48,14 +48,13 @@ public class SimulationJeu {
 
         boolean continuer = true;
         while (continuer) {
-
+            afficheTous();
             for (Personnage p : personnages) {
                 p.AnalyseSituation();
                 p.Execution();
                 mediationDesConflits();  // utiliser le pattern avec l'historique pour les actions. On pourra faire un retour arrière si conflit + réexecturer
                 recupererInformations();
             }
-            afficheTous();
 
             // bloquer le tour jusqu'a toucher une touche du clavier.
             Scanner s = new Scanner(System.in);

@@ -14,14 +14,14 @@ public class FabriquePersonnagesBattleZone extends FabriquePersonnagesAbstraite 
     public ArrayList<Personnage> CreerPersonages(Organisation o) {
         ArrayList<Personnage> list = new ArrayList<Personnage>();
 
-        PersonnageBattleZone p1 = new PersonnageBattleZone("Bob", 100.0, 1.0, 1.0, parDefaut);
+        PersonnageBattleZone p1 = new PersonnageBattleZone("Bob", 100.0, 1.0, 1.0, 2, parDefaut);
         list.add(p1);
-        PersonnageBattleZone p2 = new PersonnageBattleZone("Jo", 100.0, 1.0, 1.0, parDefaut);
-        list.add(p2);
-        PersonnageBattleZone p3 = new PersonnageBattleZone("Max", 100.0, 1.0, 1.0, parDefaut);
-        list.add(p3);
-        PersonnageBattleZone p4 = new PersonnageBattleZone("Zac", 100.0, 1.0, 1.0, parDefaut);
-        list.add(p4);
+        //PersonnageBattleZone p2 = new PersonnageBattleZone("Jo", 100.0, 1.0, 1.0, 2, parDefaut);
+        //list.add(p2);
+        //PersonnageBattleZone p3 = new PersonnageBattleZone("Max", 100.0, 1.0, 1.0, 2, parDefaut);
+        //list.add(p3);
+        //PersonnageBattleZone p4 = new PersonnageBattleZone("Zac", 100.0, 1.0, 1.0, 2, parDefaut);
+        //list.add(p4);
         return list;
     }
 }

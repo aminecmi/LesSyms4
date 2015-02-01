@@ -25,24 +25,24 @@ public abstract class CaseAbstraite {
     }
 
     public void generateVoisins(CaseAbstraite[][] plateau) {
-        for (int i = coord.getHor() - 1; i < coord.getHor() + 1; i++) {
-            for (int j = coord.getVert() - 1; j < coord.getVert() + 1; j++) {
-                if (i > 0 && i < plateau.length && j > 0 && j < plateau[0].length) {
-                    if (i == coord.getHor() && j < coord.getVert()) {
+        for (int i = coord.getLigne() - 1; i <= coord.getLigne() + 1; i++) {
+            for (int j = coord.getCol() - 1; j <= coord.getCol() + 1; j++) {
+                if (i >= 0 && i < plateau.length && j >= 0 && j < plateau[0].length) {
+                    if (i < coord.getLigne() && j == coord.getCol()) {
                         voisins.put(PointsCardinaux.N, plateau[i][j]);
-                    } else if (i > coord.getHor() && j < coord.getVert()) {
+                    } else if (i < coord.getLigne() && j > coord.getCol()) {
                         voisins.put(PointsCardinaux.NE, plateau[i][j]);
-                    } else if (i > coord.getHor() && j == coord.getVert()) {
+                    } else if (i == coord.getLigne() && j > coord.getCol()) {
                         voisins.put(PointsCardinaux.E, plateau[i][j]);
-                    } else if (i > coord.getHor() && j > coord.getVert()) {
-                        voisins.put(PointsCardinaux.NE, plateau[i][j]);
-                    } else if (i == coord.getHor() && j > coord.getVert()) {
+                    } else if (i > coord.getLigne() && j > coord.getCol()) {
+                        voisins.put(PointsCardinaux.SE, plateau[i][j]);
+                    } else if (i > coord.getLigne() && j == coord.getCol()) {
                         voisins.put(PointsCardinaux.S, plateau[i][j]);
-                    } else if (i < coord.getHor() && j > coord.getVert()) {
+                    } else if (i > coord.getLigne() && j < coord.getCol()) {
                         voisins.put(PointsCardinaux.SW, plateau[i][j]);
-                    } else if (i < coord.getHor() && j == coord.getVert()) {
+                    } else if (i == coord.getLigne() && j < coord.getCol()) {
                         voisins.put(PointsCardinaux.W, plateau[i][j]);
-                    } else if (i < coord.getHor() && j < coord.getVert()) {
+                    } else if (i < coord.getLigne() && j < coord.getCol()) {
                         voisins.put(PointsCardinaux.NW, plateau[i][j]);
                     }
                 }

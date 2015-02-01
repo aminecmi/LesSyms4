@@ -8,8 +8,8 @@ import java.util.Random;
 public class PersonnageBattleZone extends Personnage {
     Color couleur;
 
-    public PersonnageBattleZone(String name, double lifePoint, double strength, double speed, ComportementAction parDefaut) {
-        super(name, lifePoint, strength, speed, parDefaut);
+    public PersonnageBattleZone(String name, double lifePoint, double strength, double speed, int portee, ComportementAction parDefaut) {
+        super(name, lifePoint, strength, speed, portee, parDefaut);
         // TODO Auto-generated constructor stub
 
 

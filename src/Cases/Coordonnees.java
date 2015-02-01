@@ -1,27 +1,27 @@
 package Cases;
 
 public class Coordonnees {
-    private int vert;
-    private int hor;
+    private int col;
+    private int ligne;
 
     public Coordonnees(int vert, int hor) {
-        this.vert = vert;
-        this.hor = hor;
+        this.col = vert;
+        this.ligne = hor;
     }
 
-    public int getVert() {
-        return vert;
+    public int getLigne() {
+        return ligne;
     }
 
-    public void setVert(int vert) {
-        this.vert = vert;
+    public void setLigne(int ligne) {
+        this.ligne = ligne;
     }
 
-    public int getHor() {
-        return hor;
+    public int getCol() {
+        return col;
     }
 
-    public void setHor(int hor) {
-        this.hor = hor;
+    public void setCol(int col) {
+        this.col = col;
     }
 }

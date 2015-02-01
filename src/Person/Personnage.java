@@ -2,8 +2,7 @@ package Person;
 
 import Cases.CaseAbstraite;
 import Cases.PointsCardinaux;
-import Comportements.ComportementAction;
-import Comportements.EAction;
+import Comportements.*;
 import Composition.PersonnagesAbstraits;
 import Etats.EEtat;
 import Etats.EtatPersonnageAbstrait;
@@ -11,7 +10,9 @@ import Etats.EtatPersonnageKO;
 import Etats.EtatPersonnageOK;
 import Objets.ObjetAbstrait;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Personnage extends PersonnagesAbstraits {
 
@@ -22,33 +23,38 @@ public class Personnage extends PersonnagesAbstraits {
     protected double pointsDeVie;
     protected double force;
     protected double vitesse;
-    protected double porter;
-	protected EAction action;
-	private EtatPersonnageAbstrait etatCourant;
+    protected double portee;
+    protected EAction action;
+    protected ComportementAction Action;
+    private EtatPersonnageAbstrait etatCourant;
     private HashMap<PointsCardinaux, CaseAbstraite> voisins;
 
-	protected Personnage(String name, ComportementAction c) {
-		this.nom = name;
+
+    protected Personnage(String name, ComportementAction c) {
+        this.nom = name;
 		this.pointsDeVie = 100;
 		this.force = 10;
 		this.vitesse = 1;
-		this.porter = 2;
+        this.portee = 2;
 
 		this.caseCourante = null;
 		this.etatCourant = new EtatPersonnageOK(this);
-		this.action = EAction.Null;
-	}
+        this.ChangerAction(EAction.SeDeplacer);
 
-	protected Personnage(String name, double lifePoint, double strength, double speed, ComportementAction a) {
-		this.nom = name;
+    }
+
+    protected Personnage(String name, double lifePoint, double strength, double speed, int portee, ComportementAction a) {
+        this.nom = name;
 		this.pointsDeVie=lifePoint;
         this.force=strength;
         this.vitesse=speed;
-        
+        this.portee = portee;
+
         this.caseCourante=null;
         this.etatCourant= new EtatPersonnageOK(this);
-		this.action = EAction.Null;
-	}
+        this.ChangerAction(EAction.SeDeplacer);
+
+    }
 
 
 	public void ChangeEtat(EEtat NouvelEtat)
@@ -126,14 +132,14 @@ public class Personnage extends PersonnagesAbstraits {
         this.voisins = this.caseCourante.getVoisins();
 
     }
-    
-	public double getPorter() {
-		return porter;
-	}
 
-	public void setPorter(double porter) {
-		this.porter = porter;
-	}
+    public double getPortee() {
+        return portee;
+    }
+
+    public void setPortee(double portee) {
+        this.portee = portee;
+    }
 
 	public EAction getAction() {
 		return action;
@@ -144,188 +150,97 @@ public class Personnage extends PersonnagesAbstraits {
 	}
 
     public void AnalyseSituation() {
-    	etatCourant.AnalyseJoueur();
+        ArrayList<ObjetAbstrait> objets = rechercheObjetProche();
+        ArrayList<Personnage> personnages = rechercheJoueur();
     }
 
     public void Execution() {
-    	etatCourant.ExecutionJoueur();
+        Action.executerAction(this);
     }
     
     public void ResoudreLesConflits(){
-    	etatCourant.ConflitJoueur();
+
+
     }
 
-    public ObjetAbstrait rechercheObjetProche() {
+    public HashMap<PointsCardinaux, CaseAbstraite> voisinsPortee(CaseAbstraite c, int rayon) {
+        HashMap<PointsCardinaux, CaseAbstraite> voisinsActuels = new HashMap<PointsCardinaux, CaseAbstraite>();
+        HashMap<PointsCardinaux, CaseAbstraite> v = c.getVoisins();
+        if ((rayon + 1) == this.getPortee()) {
+            // voisinsActuels.putAll(v);
+            return c.getVoisins();
+        } else {
+            int r = rayon + 1;
+            for (PointsCardinaux mapKey : v.keySet()) {
+                voisinsActuels.putAll(voisinsPortee(v.get(mapKey), r));
+            }
+            return voisinsActuels;
+        }
+    }
 
-        ObjetAbstrait objetDeLaCase = null;
+    public ArrayList<ObjetAbstrait> rechercheObjetProche() {
 
-        for (PointsCardinaux mapKey : voisins.keySet()) {
-            if (voisins.get(mapKey).getObjetOccupant() != null) {
-                objetDeLaCase = voisins.get(mapKey).getObjetOccupant();
+        ArrayList<ObjetAbstrait> objetsVoisins = new ArrayList<ObjetAbstrait>();
+
+        HashSet<CaseAbstraite> voisinsDesVoisins = getCaseAbstraitesForPortee();
+
+        for (CaseAbstraite c : voisinsDesVoisins) {
+            if (c.getObjetOccupant() != null) {
+                objetsVoisins.add(c.getObjetOccupant());
             }
         }
-        if (objetDeLaCase != null) {
-            for (PointsCardinaux mapKey : voisins.keySet()) {
-                switch (mapKey) {
-                    case N:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.N) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.N).getObjetOccupant();
-                        }
-                        break;
-                    case NE:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.N) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.N).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.NE) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.NE).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.E) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.E).getObjetOccupant();
-                        }
-                        break;
-                    case E:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.E) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.E).getObjetOccupant();
-                        }
-                        break;
-                    case SE:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.E) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.E).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.SE) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.SE).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.S) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.S).getObjetOccupant();
-                        }
-                        break;
-                    case S:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.S) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.S).getObjetOccupant();
-                        }
-                        break;
-                    case SW:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.S) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.S).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.SW) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.SW).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.W) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.W).getObjetOccupant();
-                        }
-                        break;
-                    case W:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.W) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.W).getObjetOccupant();
-                        }
-                        break;
-                    case NW:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.W) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.W).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.NW) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.NW).getObjetOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.N) != null) {
-                            objetDeLaCase = voisins.get(mapKey).getVoisins().get(PointsCardinaux.N).getObjetOccupant();
-                        }
-                        break;
-                    default:
-                        break;
+        return objetsVoisins;
+    }
 
-                }
-            }
-        }
-        return objetDeLaCase;
+    protected HashSet<CaseAbstraite> getCaseAbstraitesForPortee() {
+        HashSet<CaseAbstraite> voisinsDesVoisins = new HashSet<CaseAbstraite>();
+        voisinsDesVoisins.addAll(voisinsPortee(this.caseCourante, 0).values());
+        return voisinsDesVoisins;
     }
 
 
-    public Personnage rechercheJoueur() {
-        Personnage personne = null;
+    public ArrayList<Personnage> rechercheJoueur() {
+        ArrayList<Personnage> personnes = new ArrayList<Personnage>();
 
-        for (PointsCardinaux mapKey : voisins.keySet()) {
-            if (voisins.get(mapKey).getOccupant() != null) {
-                personne = voisins.get(mapKey).getOccupant();
+        HashSet<CaseAbstraite> voisinsDesVoisins = getCaseAbstraitesForPortee();
+
+        for (CaseAbstraite c : voisinsDesVoisins) {
+            if (c.getOccupant() != null) {
+                personnes.add(c.getOccupant());
             }
         }
-        if (personne != null) {
-            for (PointsCardinaux mapKey : voisins.keySet()) {
-                switch (mapKey) {
-                    case N:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.N) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.N).getOccupant();
-                        }
-                        break;
-                    case NE:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.N) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.N).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.NE) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.NE).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.E) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.E).getOccupant();
-                        }
-                        break;
-                    case E:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.E) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.E).getOccupant();
-                        }
-                        break;
-                    case SE:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.E) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.E).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.SE) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.SE).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.S) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.S).getOccupant();
-                        }
-                        break;
-                    case S:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.S) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.S).getOccupant();
-                        }
-                        break;
-                    case SW:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.S) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.S).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.SW) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.SW).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.W) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.W).getOccupant();
-                        }
-                        break;
-                    case W:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.W) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.W).getOccupant();
-                        }
-                        break;
-                    case NW:
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.W) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.W).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.NW) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.NW).getOccupant();
-                        }
-                        if (voisins.get(mapKey).getVoisins().get(PointsCardinaux.N) != null) {
-                            personne = voisins.get(mapKey).getVoisins().get(PointsCardinaux.N).getOccupant();
-                        }
-                        break;
-                    default:
-                        break;
 
-                }
-            }
-        }
-        return personne;
+        return personnes;
     }
 
     public void mediationConflits() {
-        etatCourant.mediationConflits();
+
+
+    }
+
+    public void ChangerAction(EAction nouvelAction) {
+
+        switch (nouvelAction) {
+            case ChangerCouleurCase:
+                Action = new ComportementActionChangerCouleurCase();
+                break;
+            case RamasserNeige:
+                Action = new ComportementActionRamasserNeige();
+                break;
+            case SeDeplacer:
+                Action = new ComportementActionSeDeplacer();
+                break;
+            case TirerBalon:
+                Action = new ComportementActionTirerBalon();
+                break;
+            case TirerBouleDeNeige:
+                Action = new ComportementActionTirerBouleDeNeige();
+                break;
+            default:
+                break;
+
+        }
+
+        this.setAction(nouvelAction);
     }
 }

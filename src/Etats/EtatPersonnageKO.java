@@ -8,37 +8,12 @@ public class EtatPersonnageKO extends EtatPersonnageAbstrait {
 
 	public EtatPersonnageKO(Personnage perso) {
 		super(perso);
-		// TODO Auto-generated constructor stub
-		
-		this.nbTourKO = 3;
-	}
-
-	@Override
-	public void AnalyseJoueur() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void ExecutionJoueur() {
-		// TODO Auto-generated method stub
-		
-		nbTourKO--;
-		if (nbTourKO==0){
-			this.joueur.ChangeEtat(EEtat.EtatOK);
-		}
-		
-	}
-
-	@Override
-	public void ConflitJoueur() {
-		// TODO Auto-generated method stub
-		
 	}
 
     @Override
-    public void mediationConflits() {
-
+    protected void execute() {
+        if (this.joueur.getPointsDeVie() > 0) {
+            this.joueur.ChangeEtat(EEtat.EtatOK);
+        }
     }
-
 }
