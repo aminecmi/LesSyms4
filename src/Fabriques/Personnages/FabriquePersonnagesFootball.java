@@ -5,17 +5,18 @@ import Comportements.ComportementAction;
 import Comportements.ComportementActionTirerBalon;
 import Composition.EquipeDeFoot;
 import Composition.PersonnagesAbstraits;
-import Observateur.Organisation;
+import Observateur.Arbitre;
 import Person.Personnage;
 import Person.PersonnageFootball;
 
 import java.util.ArrayList;
 
 public class FabriquePersonnagesFootball extends FabriquePersonnagesAbstraite {
+    public Arbitre a;
     ComportementAction parDefaut = new ComportementActionTirerBalon();
 
     @Override
-    public ArrayList<Personnage> CreerPersonages(Organisation o, CaseAbstraite[][] plateau) {
+    public ArrayList<Personnage> CreerPersonages(CaseAbstraite[][] plateau) {
         ArrayList<Personnage> list = new ArrayList<Personnage>();
 
         PersonnageFootball p1 = new PersonnageFootball("Bob", 100.0, 1.0, 1.0, 2, parDefaut);

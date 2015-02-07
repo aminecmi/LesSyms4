@@ -3,7 +3,6 @@ package Fabriques.Personnages;
 import Cases.CaseAbstraite;
 import Comportements.ComportementAction;
 import Comportements.ComportementActionChangerCouleurCase;
-import Observateur.Organisation;
 import Person.Personnage;
 import Person.PersonnageBattleZone;
 
@@ -13,7 +12,7 @@ public class FabriquePersonnagesBattleZone extends FabriquePersonnagesAbstraite 
     protected ComportementAction parDefaut = new ComportementActionChangerCouleurCase();
 
     @Override
-    public ArrayList<Personnage> CreerPersonages(Organisation o, CaseAbstraite[][] plateau) {
+    public ArrayList<Personnage> CreerPersonages(CaseAbstraite[][] plateau) {
         ArrayList<Personnage> list = new ArrayList<Personnage>();
 
         PersonnageBattleZone p1 = new PersonnageBattleZone("Bob", 100.0, 1.0, 1.0, 2, parDefaut);

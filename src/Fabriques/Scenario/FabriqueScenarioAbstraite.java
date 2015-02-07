@@ -5,7 +5,6 @@ import Fabriques.Objets.FabriqueObjetAbstraite;
 import Fabriques.Personnages.FabriquePersonnagesAbstraite;
 import Fabriques.Plateau.FabriquePlateauAbstraite;
 import Objets.ObjetAbstrait;
-import Observateur.Organisation;
 import Person.Personnage;
 
 import java.util.ArrayList;
@@ -21,8 +20,8 @@ public abstract class FabriqueScenarioAbstraite {
         this.fObjs = fObjs;
     }
 
-    public ArrayList<Personnage> CreerPersonnages(Organisation o, CaseAbstraite[][] plateau) {
-        return this.fPersonnages.CreerPersonages(o, plateau);
+    public ArrayList<Personnage> CreerPersonnages(CaseAbstraite[][] plateau) {
+        return this.fPersonnages.CreerPersonages(plateau);
     }
 
     public CaseAbstraite[][] CreerPlateau() {

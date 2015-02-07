@@ -9,13 +9,14 @@ import Etats.EtatPersonnageAbstrait;
 import Etats.EtatPersonnageKO;
 import Etats.EtatPersonnageOK;
 import Objets.ObjetAbstrait;
+import Observateur.ObservateurAbstrait;
 import utils.Tuple;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Personnage extends PersonnagesAbstraits {
+public class Personnage extends PersonnagesAbstraits implements ObservateurAbstrait {
 
 
 	protected CaseAbstraite caseCourante;
@@ -151,6 +152,9 @@ public class Personnage extends PersonnagesAbstraits {
             case TirerBouleDeNeige:
                 Action = new ComportementActionTirerBouleDeNeige();
                 break;
+            case Rien:
+                Action = new ComportementActionTirerBouleDeNeige();
+                break;
             default:
                 break;
 
@@ -232,5 +236,10 @@ public class Personnage extends PersonnagesAbstraits {
 
     public void setVoisins(HashMap<PointsCardinaux, CaseAbstraite> voisins) {
         this.voisins = voisins;
+    }
+
+    @Override
+    public void update() {
+        this.ChangerAction(EAction.Rien);
     }
 }

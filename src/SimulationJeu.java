@@ -1,6 +1,6 @@
 import Cases.CaseAbstraite;
 import Fabriques.Scenario.FabriqueScenarioAbstraite;
-import Observateur.Organisation;
+import Observateur.Arbitre;
 import Person.Personnage;
 import utils.InterfaceConsole;
 
@@ -11,23 +11,22 @@ import java.util.Scanner;
 public class SimulationJeu {
     ArrayList<Personnage> personnages;
     CaseAbstraite[][] plateau;
-    Organisation o;
     FabriqueScenarioAbstraite f;
     InterfaceConsole intefaceC;
+    Arbitre a;
 
     public SimulationJeu(FabriqueScenarioAbstraite fb) {
         f = fb;
         personnages = new ArrayList<Personnage>();
         plateau = f.CreerPlateau();
 
-        // L'organisation dans les personnages. On aura une orga spécifique pour chaque
-        o = new Organisation();
-        personnages = f.CreerPersonnages(o, plateau);
+        personnages = f.CreerPersonnages(plateau);
 
         f.creerObjets(plateau);
 
         intefaceC = new InterfaceConsole(plateau);
 
+        a = new Arbitre();
     }
 
     public void afficheTous() {
@@ -42,10 +41,14 @@ public class SimulationJeu {
     }
 
     public void lancerJeu() {
+        for (Personnage p : personnages) {
+            a.attach(p);
+        }
 
         boolean continuer = true;
         afficheTous();
         while (continuer) {
+            a.update();
             for (Personnage p : personnages) {
                 p.Execution(p.AnalyseSituation());
                 recupererInformations();
