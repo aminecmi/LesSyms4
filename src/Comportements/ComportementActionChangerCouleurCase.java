@@ -35,7 +35,7 @@ public class ComportementActionChangerCouleurCase implements ComportementAction 
         CaseColore caseColore = (CaseColore) p.getCaseCourante();
         caseColore.setOccupant(null);
 
-        CaseColore dest = (CaseColore) cases.get(item);
+        CaseColore dest = cases.get(item);
         dest.setOccupant(p);
         p.setCaseCourante(dest);
 

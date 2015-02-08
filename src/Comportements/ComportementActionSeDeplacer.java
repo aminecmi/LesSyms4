@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ComportementActionSeDeplacer implements ComportementAction  {
+    CaseAbstraite destination;
 
-	@Override
+    @Override
     public void executerAction(Personnage perso, Tuple<ArrayList<Personnage>, ArrayList<ObjetAbstrait>, ArrayList<CaseAbstraite>> t) {
         ArrayList<CaseAbstraite> cases = (ArrayList<CaseAbstraite>) t.c.clone();
         ArrayList<ObjetAbstrait> objs = (ArrayList<ObjetAbstrait>) t.o.clone();
@@ -24,13 +25,13 @@ public class ComportementActionSeDeplacer implements ComportementAction  {
             int item = new Random().nextInt(size);
             destination = cases.get(item);
         } else {
-            recupererObjets(objs, destination, perso);
+            recupererObjets(objs, perso);
         }
         destination.setOccupant(perso);
         perso.setCaseCourante(destination);
     }
 
-    private void recupererObjets(ArrayList<ObjetAbstrait> objs, CaseAbstraite destination, Personnage perso) {
+    private void recupererObjets(ArrayList<ObjetAbstrait> objs, Personnage perso) {
         int size = objs.size();
         int item = new Random().nextInt(size);
         destination = objs.get(item).getCaseCourante();

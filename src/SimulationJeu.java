@@ -58,7 +58,10 @@ public class SimulationJeu {
 
             // bloquer le tour jusqu'a toucher une touche du clavier.
             Scanner s = new Scanner(System.in);
-            s.nextLine();
+            String choix = s.nextLine();
+            if (choix == "s") {
+                continuer = false;
+            }
         }
 
     }
