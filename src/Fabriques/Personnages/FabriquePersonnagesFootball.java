@@ -19,17 +19,22 @@ public class FabriquePersonnagesFootball extends FabriquePersonnagesAbstraite {
     public ArrayList<Personnage> CreerPersonages(CaseAbstraite[][] plateau) {
         ArrayList<Personnage> list = new ArrayList<Personnage>();
 
+        ArrayList<Personnage> l1 = new ArrayList<Personnage>();
+        ArrayList<Personnage> l2 = new ArrayList<Personnage>();
+
         PersonnageFootball p1 = new PersonnageFootball("Bob", 100.0, 1.0, 1.0, 2, parDefaut);
         list.add(p1);
+        l1.add(p1);
         PersonnageFootball p2 = new PersonnageFootball("Jo", 100.0, 1.0, 1.0, 2, parDefaut);
         list.add(p2);
+        l1.add(p2);
         PersonnageFootball p3 = new PersonnageFootball("Max", 100.0, 1.0, 1.0, 2, parDefaut);
         list.add(p3);
+        l2.add(p3);
         PersonnageFootball p4 = new PersonnageFootball("Zac", 100.0, 1.0, 1.0, 2, parDefaut);
         list.add(p4);
+        l2.add(p4);
 
-        ArrayList<Personnage> l1 = (ArrayList<Personnage>) list.subList(0, 2);
-        ArrayList<Personnage> l2 = (ArrayList<Personnage>) list.subList(2, 4);
         EquipeDeFoot e1 = new EquipeDeFoot(l1, "E1");
         EquipeDeFoot e2 = new EquipeDeFoot(l2, "E2");
 
@@ -43,6 +48,7 @@ public class FabriquePersonnagesFootball extends FabriquePersonnagesAbstraite {
             pf.setEquipe(e2);
         }
 
+        this.placement(list, plateau);
         return list;
     }
 }
