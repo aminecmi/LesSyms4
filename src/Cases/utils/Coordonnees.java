@@ -13,16 +13,8 @@ public class Coordonnees {
         return ligne;
     }
 
-    public void setLigne(int ligne) {
-        this.ligne = ligne;
-    }
-
     public int getCol() {
         return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
     }
 
     @Override

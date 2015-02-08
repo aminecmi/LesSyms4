@@ -9,7 +9,7 @@ import java.util.Random;
 abstract public class FabriquePersonnagesAbstraite {
     public abstract ArrayList<Personnage> CreerPersonages(CaseAbstraite[][] plateau);
 
-    protected void placement(ArrayList<Personnage> personnages, CaseAbstraite[][] plateau) {
+    void placement(ArrayList<Personnage> personnages, CaseAbstraite[][] plateau) {
         Random rand = new Random();
         for (Personnage p : personnages) {
             int x = rand.nextInt(plateau.length);

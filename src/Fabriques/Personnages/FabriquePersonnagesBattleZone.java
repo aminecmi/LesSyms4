@@ -9,7 +9,7 @@ import Person.PersonnageBattleZone;
 import java.util.ArrayList;
 
 public class FabriquePersonnagesBattleZone extends FabriquePersonnagesAbstraite {
-    protected ComportementAction parDefaut = new ComportementActionChangerCouleurCase();
+    private final ComportementAction parDefaut = new ComportementActionChangerCouleurCase();
 
     @Override
     public ArrayList<Personnage> CreerPersonages(CaseAbstraite[][] plateau) {

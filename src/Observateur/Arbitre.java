@@ -2,7 +2,7 @@ package Observateur;
 
 public class Arbitre extends SujetObserveAbstrait {
 
-    int iter = 10;
+    private int iter = 10;
 
     @Override
     public void update() {

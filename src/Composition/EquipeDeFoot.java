@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class EquipeDeFoot extends GroupeAbstrait {
 
-    public String nom;
+    private final String nom;
 
     public EquipeDeFoot(ArrayList<Personnage> list) {
         super(list);

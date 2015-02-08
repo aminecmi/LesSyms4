@@ -9,15 +9,15 @@ import java.util.HashMap;
 
 public abstract class CaseAbstraite {
 
-	protected Personnage occupant;
-    protected ObjetAbstrait objetOccupant;
+    private Personnage occupant;
+    private ObjetAbstrait objetOccupant;
 
 
-    HashMap<PointsCardinaux, CaseAbstraite> voisins;
+    private HashMap<PointsCardinaux, CaseAbstraite> voisins;
 
-    Coordonnees coord;
+    private Coordonnees coord;
 
-    public CaseAbstraite(int vert, int hor) {
+    CaseAbstraite(int vert, int hor) {
         coord = new Coordonnees(vert, hor);
 
         voisins = new HashMap<PointsCardinaux, CaseAbstraite>();
@@ -52,16 +52,8 @@ public abstract class CaseAbstraite {
         }
     }
 
-    public void ajouterVoisin(PointsCardinaux p, CaseAbstraite c) {
-        voisins.put(p, c);
-    }
-
     public void ajouterOccupant(Personnage occ) {
         this.occupant = occ;
-    }
-    
-    public void ajouterObjet(ObjetAbstrait objet) {
-        this.objetOccupant = objet;
     }
 
     public Personnage getOccupant() {
@@ -84,19 +76,7 @@ public abstract class CaseAbstraite {
 		return voisins;
 	}
 
-	public void setVoisins(HashMap<PointsCardinaux, CaseAbstraite> voisins) {
-		this.voisins = voisins;
-	}
-
     public String affichageSpecial() {
         return " ";
-    }
-
-    public Coordonnees getCoord() {
-        return coord;
-    }
-
-    public void setCoord(Coordonnees coord) {
-        this.coord = coord;
     }
 }

@@ -3,11 +3,11 @@ package Etats;
 import Person.Personnage;
 
 public abstract class EtatPersonnageAbstrait {
-	
-	protected Personnage joueur;
 
-	protected EtatPersonnageAbstrait(Personnage perso){
-		this.joueur = perso;
+    final Personnage joueur;
+
+    EtatPersonnageAbstrait(Personnage perso) {
+        this.joueur = perso;
 	}
 
     protected abstract void execute();

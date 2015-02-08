@@ -5,9 +5,9 @@ import Person.Personnage;
 import java.util.ArrayList;
 
 public class GroupeAbstrait extends PersonnagesAbstraits {
-    ArrayList<Personnage> list = new ArrayList<Personnage>();
+    private ArrayList<Personnage> list = new ArrayList<Personnage>();
 
-    public GroupeAbstrait(ArrayList<Personnage> list) {
+    GroupeAbstrait(ArrayList<Personnage> list) {
         this.list = list;
     }
 

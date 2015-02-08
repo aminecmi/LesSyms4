@@ -7,10 +7,11 @@ import Composition.GroupeAbstrait;
 import Objets.ObjetBallon;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PersonnageFootball extends Personnage {
 
-    public EquipeDeFoot equipe;
+    private EquipeDeFoot equipe;
 
     public PersonnageFootball(String name, double lifePoint, double strength, double speed, int portee, ComportementAction parDefaut) {
         super(name, lifePoint, strength, speed, portee, parDefaut);
@@ -27,6 +28,11 @@ public class PersonnageFootball extends Personnage {
     }
 
     public void lancerBallon(ObjetBallon objetOccupant, ArrayList<CaseAbstraite> cases) {
+        int size = cases.size();
+        int item = new Random().nextInt(size);
+        CaseAbstraite dest = cases.get(item);
 
+        objetOccupant.setCaseCourante(dest);
+        dest.setObjetOccupant(objetOccupant);
     }
 }

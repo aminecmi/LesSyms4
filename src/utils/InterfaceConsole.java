@@ -3,7 +3,7 @@ package utils;
 import Cases.CaseAbstraite;
 
 public class InterfaceConsole {
-    CaseAbstraite[][] plateau;
+    private final CaseAbstraite[][] plateau;
 
     public InterfaceConsole(CaseAbstraite[][] cases) {
         plateau = cases;

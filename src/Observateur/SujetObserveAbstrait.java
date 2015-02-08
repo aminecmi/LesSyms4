@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public abstract class SujetObserveAbstrait {
 
-    ArrayList<ObservateurAbstrait> liste;
+    final ArrayList<ObservateurAbstrait> liste;
 
-    protected SujetObserveAbstrait() {
+    SujetObserveAbstrait() {
         liste = new ArrayList<ObservateurAbstrait>();
     }
 

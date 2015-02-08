@@ -3,7 +3,7 @@ package Cases;
 import java.awt.*;
 
 public class CaseColore extends CaseAbstraite {
-    Color couleur;
+    private Color couleur;
 
     public CaseColore(int vert, int hor) {
         super(vert, hor);

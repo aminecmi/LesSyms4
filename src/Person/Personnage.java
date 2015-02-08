@@ -19,17 +19,17 @@ import java.util.HashSet;
 public class Personnage extends PersonnagesAbstraits implements ObservateurAbstrait {
 
 
-	protected CaseAbstraite caseCourante;
-    protected ObjetAbstrait objet;
-    protected String nom;
-    protected String groupe;
-    protected double pointsDeVie;
-    protected double force;
-    protected double vitesse;
-    protected double portee;
-    protected EAction action;
-    protected ComportementAction Action;
-    HashSet<CaseAbstraite> voisinsActuels = new HashSet<CaseAbstraite>();
+    private final String nom;
+    private final double force;
+    private final double vitesse;
+    private final double portee;
+    private CaseAbstraite caseCourante;
+    private ObjetAbstrait objet;
+    private String groupe;
+    private double pointsDeVie;
+    private EAction action;
+    private ComportementAction Action;
+    private HashSet<CaseAbstraite> voisinsActuels = new HashSet<CaseAbstraite>();
     private EtatPersonnageAbstrait etatCourant;
     private HashMap<PointsCardinaux, CaseAbstraite> voisins;
 
@@ -46,7 +46,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
     }
 
 
-    protected Personnage(String name, double lifePoint, double strength, double speed, int portee, ComportementAction a) {
+    Personnage(String name, double lifePoint, double strength, double speed, int portee, ComportementAction a) {
         this.nom = name;
 		this.pointsDeVie=lifePoint;
         this.force=strength;
@@ -90,7 +90,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         Action.executerAction(this, t);
     }
 
-    public HashSet<CaseAbstraite> voisinsPortee(CaseAbstraite c, int rayon) {
+    HashSet<CaseAbstraite> voisinsPortee(CaseAbstraite c, int rayon) {
         HashMap<PointsCardinaux, CaseAbstraite> v = c.getVoisins();
         if ((rayon + 1) == this.getPortee()) {
             voisinsActuels.addAll(c.getVoisins().values());
@@ -103,7 +103,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return voisinsActuels;
     }
 
-    public ArrayList<ObjetAbstrait> rechercheObjetProche(HashSet<CaseAbstraite> voisinsDesVoisins) {
+    ArrayList<ObjetAbstrait> rechercheObjetProche(HashSet<CaseAbstraite> voisinsDesVoisins) {
         ArrayList<ObjetAbstrait> objetsVoisins = new ArrayList<ObjetAbstrait>();
 
         for (CaseAbstraite c : voisinsDesVoisins) {
@@ -114,14 +114,14 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return objetsVoisins;
     }
 
-    protected HashSet<CaseAbstraite> getCaseAbstraitesForPortee() {
+    HashSet<CaseAbstraite> getCaseAbstraitesForPortee() {
         HashSet<CaseAbstraite> voisins = voisinsPortee(this.caseCourante, 0);
         voisins.remove(getCaseCourante());
         return voisins;
     }
 
 
-    public ArrayList<Personnage> rechercheJoueur(HashSet<CaseAbstraite> voisinsDesVoisins) {
+    ArrayList<Personnage> rechercheJoueur(HashSet<CaseAbstraite> voisinsDesVoisins) {
         ArrayList<Personnage> personnes = new ArrayList<Personnage>();
         for (CaseAbstraite c : voisinsDesVoisins) {
             if (c.getOccupant() != null) {
@@ -132,12 +132,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return personnes;
     }
 
-    public void mediationConflits() {
-
-
-    }
-
-    public void ChangerAction(EAction nouvelAction) {
+    void ChangerAction(EAction nouvelAction) {
 
         switch (nouvelAction) {
             case ChangerCouleurCase:
@@ -153,7 +148,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
                 Action = new ComportementActionTirerBouleDeNeige();
                 break;
             case Rien:
-                Action = new ComportementActionTirerBouleDeNeige();
+                Action = new Rien();
                 break;
             default:
                 break;
@@ -163,7 +158,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         this.setAction(nouvelAction);
     }
 
-    public ObjetAbstrait getObjet() {
+    ObjetAbstrait getObjet() {
         return objet;
     }
 
@@ -179,7 +174,11 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return bonus + pointsDeVie;
     }
 
-    public double getForce() {
+    void setPointsDeVie(double pointsDeVie) {
+        this.pointsDeVie = pointsDeVie;
+    }
+
+    double getForce() {
         double bonus = 0;
         if (getObjet() != null) {
             bonus = getObjet().getForce();
@@ -199,7 +198,6 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return groupe;
     }
 
-
     public void setGroupe(String equipe) {
         groupe = equipe;
     }
@@ -218,7 +216,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
 
     }
 
-    public double getPortee() {
+    double getPortee() {
         return portee;
     }
 
@@ -226,7 +224,7 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
         return action;
     }
 
-    public void setAction(EAction action) {
+    void setAction(EAction action) {
         this.action = action;
     }
 
@@ -241,5 +239,28 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
     @Override
     public void update() {
         this.ChangerAction(EAction.Rien);
+    }
+
+    public void afficherInfos() {
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Personnage{" +
+                "caseCourante=" + caseCourante +
+                ", objet=" + objet +
+                ", nom='" + nom + '\'' +
+                ", groupe='" + groupe + '\'' +
+                ", pointsDeVie=" + pointsDeVie +
+                ", force=" + force +
+                ", vitesse=" + vitesse +
+                ", portee=" + portee +
+                ", action=" + action +
+                ", Action=" + Action +
+                ", voisinsActuels=" + voisinsActuels +
+                ", etatCourant=" + etatCourant +
+                ", voisins=" + voisins +
+                '}';
     }
 }

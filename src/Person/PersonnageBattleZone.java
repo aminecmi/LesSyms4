@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class PersonnageBattleZone extends Personnage {
-    Color couleur;
+    private Color couleur;
 
     public PersonnageBattleZone(String name, double lifePoint, double strength, double speed, int portee, ComportementAction parDefaut) {
         super(name, lifePoint, strength, speed, portee, parDefaut);

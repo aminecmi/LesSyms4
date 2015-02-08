@@ -10,7 +10,11 @@ public class PersonnageBattleSnow  extends Personnage{
 	}
 
     public void attack(PersonnageBattleSnow cible) {
+        double force = this.getForce();
+        cible.recevoirAttack(force);
+    }
 
-
+    private void recevoirAttack(double force) {
+        this.setPointsDeVie(this.getPointsDeVie() - force);
     }
 }

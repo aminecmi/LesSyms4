@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ComportementActionSeDeplacer implements ComportementAction  {
-    CaseAbstraite destination;
+    private CaseAbstraite destination;
 
     @Override
     public void executerAction(Personnage perso, Tuple<ArrayList<Personnage>, ArrayList<ObjetAbstrait>, ArrayList<CaseAbstraite>> t) {
@@ -27,7 +27,9 @@ public class ComportementActionSeDeplacer implements ComportementAction  {
         } else {
             recupererObjets(objs, perso);
         }
-        destination.setOccupant(perso);
+        if (destination != null) {
+            destination.setOccupant(perso);
+        }
         perso.setCaseCourante(destination);
     }
 

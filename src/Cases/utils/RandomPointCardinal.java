@@ -2,7 +2,7 @@ package Cases.utils;
 
 import java.util.Random;
 
-public class RandomPointCardinal<E extends Enum> {
+class RandomPointCardinal<E extends Enum> {
 
     private static final Random RND = new Random();
     private final E[] values;

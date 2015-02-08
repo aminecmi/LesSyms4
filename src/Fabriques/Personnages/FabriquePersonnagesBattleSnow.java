@@ -10,8 +10,8 @@ import Person.PersonnageBattleSnow;
 import java.util.ArrayList;
 
 public class FabriquePersonnagesBattleSnow extends FabriquePersonnagesAbstraite  {
+    private final ComportementAction parDefaut = new ComportementActionTirerBouleDeNeige();
     public Arbitre a;
-    protected ComportementAction parDefaut = new ComportementActionTirerBouleDeNeige();
 
 	@Override
     public ArrayList<Personnage> CreerPersonages(CaseAbstraite[][] plateau) {

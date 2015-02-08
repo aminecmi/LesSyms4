@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class SimulationJeu {
-    ArrayList<Personnage> personnages;
-    CaseAbstraite[][] plateau;
-    FabriqueScenarioAbstraite f;
-    InterfaceConsole intefaceC;
-    Arbitre a;
+class SimulationJeu {
+    private final CaseAbstraite[][] plateau;
+    private final FabriqueScenarioAbstraite f;
+    private final InterfaceConsole intefaceC;
+    private final Arbitre a;
+    private ArrayList<Personnage> personnages;
 
     public SimulationJeu(FabriqueScenarioAbstraite fb) {
         f = fb;
@@ -29,14 +29,14 @@ public class SimulationJeu {
         a = new Arbitre();
     }
 
-    public void afficheTous() {
+    void afficheTous() {
         System.out.println("");
         intefaceC.afficherPlateau();
     }
 
-    public void recupererInformations() {
+    void recupererInformations() {
         for (Personnage p : personnages) {
-
+            p.afficherInfos();
         }
     }
 
@@ -59,7 +59,7 @@ public class SimulationJeu {
             // bloquer le tour jusqu'a toucher une touche du clavier.
             Scanner s = new Scanner(System.in);
             String choix = s.nextLine();
-            if (choix == "s") {
+            if (choix.equals("s")) {
                 continuer = false;
             }
         }

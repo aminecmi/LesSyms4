@@ -10,11 +10,11 @@ import Person.Personnage;
 import java.util.ArrayList;
 
 public abstract class FabriqueScenarioAbstraite {
-    FabriquePlateauAbstraite fPlateau;
-    FabriquePersonnagesAbstraite fPersonnages;
-    FabriqueObjetAbstraite fObjs;
+    private final FabriquePlateauAbstraite fPlateau;
+    private final FabriquePersonnagesAbstraite fPersonnages;
+    private final FabriqueObjetAbstraite fObjs;
 
-    public FabriqueScenarioAbstraite(FabriquePlateauAbstraite pl, FabriquePersonnagesAbstraite pr, FabriqueObjetAbstraite fObjs) {
+    FabriqueScenarioAbstraite(FabriquePlateauAbstraite pl, FabriquePersonnagesAbstraite pr, FabriqueObjetAbstraite fObjs) {
         this.fPlateau = pl;
         this.fPersonnages = pr;
         this.fObjs = fObjs;

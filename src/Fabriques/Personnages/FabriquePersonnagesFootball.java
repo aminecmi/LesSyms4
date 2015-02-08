@@ -12,8 +12,8 @@ import Person.PersonnageFootball;
 import java.util.ArrayList;
 
 public class FabriquePersonnagesFootball extends FabriquePersonnagesAbstraite {
+    private final ComportementAction parDefaut = new ComportementActionTirerBalon();
     public Arbitre a;
-    ComportementAction parDefaut = new ComportementActionTirerBalon();
 
     @Override
     public ArrayList<Personnage> CreerPersonages(CaseAbstraite[][] plateau) {
