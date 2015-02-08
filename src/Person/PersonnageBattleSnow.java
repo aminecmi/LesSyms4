@@ -9,4 +9,8 @@ public class PersonnageBattleSnow  extends Personnage{
         // TODO Auto-generated constructor stub
 	}
 
+    public void attack(PersonnageBattleSnow cible) {
+
+
+    }
 }

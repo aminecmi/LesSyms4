@@ -1,8 +1,12 @@
 package Person;
 
+import Cases.CaseAbstraite;
 import Comportements.ComportementAction;
 import Composition.EquipeDeFoot;
 import Composition.GroupeAbstrait;
+import Objets.ObjetBallon;
+
+import java.util.ArrayList;
 
 public class PersonnageFootball extends Personnage {
 
@@ -22,4 +26,7 @@ public class PersonnageFootball extends Personnage {
         this.equipe = equipe;
     }
 
+    public void lancerBallon(ObjetBallon objetOccupant, ArrayList<CaseAbstraite> cases) {
+
+    }
 }
