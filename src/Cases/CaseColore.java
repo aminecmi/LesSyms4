@@ -11,8 +11,9 @@ public class CaseColore extends CaseAbstraite {
     }
 
     public String affichageSpecial() {
-        if (this.couleur.getRGB() < 0)
-            return String.valueOf(String.valueOf(this.couleur.getRGB()).charAt(0));
+        if (Color.white.getRGB() != this.couleur.getRGB()) {
+            return this.couleur.getBlue() + this.couleur.getRed() + this.couleur.getGreen() + "";
+        }
         return " ";
     }
 
