@@ -7,6 +7,7 @@ import Person.PersonnageBattleSnow;
 import utils.Tuple;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
 public class ComportementActionTirerBouleDeNeige implements ComportementAction  {
@@ -25,8 +26,10 @@ public class ComportementActionTirerBouleDeNeige implements ComportementAction  
             int size = persos.size();
             int item = new Random().nextInt(size);
             cible = persos.get(item);
-            ArrayList<CaseAbstraite> voisins = (ArrayList<CaseAbstraite>) cible.getVoisins().values();
-            dest = voisins.get(new Random().nextInt(voisins.size()));
+            Collection<CaseAbstraite> voisinsArray = cible.getVoisins().values();
+            CaseAbstraite[] toto = new CaseAbstraite[0];
+            CaseAbstraite[] voisins = voisinsArray.toArray(toto);
+            dest = voisins[(new Random().nextInt(voisins.length))];
             attack = true;
         } else {
             int size = cases.size();
