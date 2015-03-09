@@ -38,7 +38,7 @@ public class ComportementActionTirerBalon implements ComportementAction  {
             dest = cases.get(item);
         }
         if (j.getCaseCourante().getObjetOccupant() != null) {
-            j.lancerBallon((ObjetBallon) dest.getObjetOccupant(), cases);
+            j.lancerBallon((ObjetBallon) j.getCaseCourante().getObjetOccupant(), cases);
         }
         joueur.getCaseCourante().setOccupant(null);
         joueur.setCaseCourante(dest);

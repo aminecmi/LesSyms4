@@ -19,5 +19,5 @@ public abstract class SujetObserveAbstrait {
         liste.remove(observateurAbstrait);
     }
 
-    public abstract void update();
+    public abstract boolean update();
 }

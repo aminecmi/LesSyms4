@@ -1,5 +1,6 @@
 import Cases.CaseAbstraite;
 import Fabriques.Scenario.FabriqueScenarioAbstraite;
+import Objets.ObjetAbstrait;
 import Observateur.Arbitre;
 import Person.Personnage;
 import utils.InterfaceConsole;
@@ -22,7 +23,7 @@ class SimulationJeu {
 
         personnages = f.CreerPersonnages(plateau);
 
-        f.creerObjets(plateau);
+        ArrayList<ObjetAbstrait> objs = f.creerObjets(plateau);
 
         intefaceC = new InterfaceConsole(plateau);
 
@@ -48,10 +49,10 @@ class SimulationJeu {
         boolean continuer = true;
         afficheTous();
         while (continuer) {
-            a.update();
+            continuer = a.update();
+            recupererInformations();
             for (Personnage p : personnages) {
                 p.Execution(p.AnalyseSituation());
-                recupererInformations();
             }
             f.tourParTour(plateau);
             afficheTous();

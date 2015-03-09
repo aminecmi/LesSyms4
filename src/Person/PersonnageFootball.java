@@ -32,7 +32,11 @@ public class PersonnageFootball extends Personnage {
         int item = new Random().nextInt(size);
         CaseAbstraite dest = cases.get(item);
 
+        CaseAbstraite old = objetOccupant.getCaseCourante();
+
         objetOccupant.setCaseCourante(dest);
         dest.setObjetOccupant(objetOccupant);
+
+        old.setObjetOccupant(null);
     }
 }

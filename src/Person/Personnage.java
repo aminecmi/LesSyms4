@@ -247,7 +247,8 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
 
     @Override
     public String toString() {
-        return "Personnage{" +
+        return nom + " case " + caseCourante.toString() + " pv " + pointsDeVie;
+        /*return "Personnage{" +
                 "caseCourante=" + caseCourante +
                 ", objet=" + objet +
                 ", nom='" + nom + '\'' +
@@ -261,6 +262,6 @@ public class Personnage extends PersonnagesAbstraits implements ObservateurAbstr
                 ", voisinsActuels=" + voisinsActuels +
                 ", etatCourant=" + etatCourant +
                 ", voisins=" + voisins +
-                '}';
+                '}';*/
     }
 }

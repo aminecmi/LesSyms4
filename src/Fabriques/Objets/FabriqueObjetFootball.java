@@ -11,6 +11,7 @@ public class FabriqueObjetFootball extends FabriqueObjetAbstraite {
     public ArrayList<ObjetAbstrait> creerObjets(CaseAbstraite[][] plateau) {
         ArrayList<ObjetAbstrait> objs = new ArrayList<ObjetAbstrait>();
         objs.add(new ObjetBallon());
+        this.placement(objs, plateau);
         return objs;
     }
 }
